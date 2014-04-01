@@ -16,4 +16,10 @@ public class ParticipanteBean {
 	public void setParticipante(Participante participante) {
 		this.participante = participante;
 	}
+	
+	public void confirma()
+	{
+		
+	}
+	
 }

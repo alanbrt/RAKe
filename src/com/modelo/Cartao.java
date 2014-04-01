@@ -9,7 +9,7 @@ public class Cartao {
 	
 	private String marca;
 	
-	private String dataValidade;
+	private String dataVencimento;
 
 	public int getNumero() {
 		return numero;
@@ -27,12 +27,13 @@ public class Cartao {
 		this.marca = marca;
 	}
 
-	public String getDataValidade() {
-		return dataValidade;
+	public String getDataVencimento() {
+		return dataVencimento;
 	}
 
-	public void setDataValidade(String dataValidade) {
-		this.dataValidade = dataValidade;
+	public void setDataVencimento(String dataVencimento) {
+		this.dataVencimento = dataVencimento;
 	}
+
 	
 }

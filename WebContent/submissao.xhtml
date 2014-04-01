@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<title>GERACE 0.1A</title>
+		<link rel="stylesheet" type="text/css" href="teste.css"/>
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+	</h:head>
+	<h:body>
+		<div id="tudo">
+			<div id="top_pg">
+				<img id="logo" src="img/logo_treba.png" width="120" height="72"/>
+				<h2 id="title_pg">GERACE - Gerador Ramdomico de Amostra para Correicao Extraordinaria</h2>
+			</div>
+			<div id="conteudo">
+				<fieldset class="login">
+					<legend><h4>Area de Login</h4></legend>
+					<h:form>
+					Login: 
+					<h:inputText value="#{usuarioBean.usuario.login}" id="login"/><br/>
+					Senha:
+					<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"/><br/>
+					<h:commandLink value="Entrar" actionListener="#{usuarioBean.login}" imediate="true"/>
+					</h:form>
+				</fieldset>
+			</div>
+			<div id="rodape">
+			</div>
+		</div>
+	</h:body>
+
+</html>

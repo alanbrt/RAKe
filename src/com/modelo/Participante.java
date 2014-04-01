@@ -3,10 +3,10 @@ package com.modelo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Participante {
 
-	@Id
+	//@Id
 	private int inscricao;
 	
 	private String nome;
@@ -17,9 +17,19 @@ public class Participante {
 	
 	private String email;
 	
+	private String localEmprego;
+	
 	private Cartao cartao;
 	
 	private boolean revisor;
+	
+	public String getLocalEmprego() {
+		return localEmprego;
+	}
+	
+	public void setLocalEmprego(String localEmprego) {
+		this.localEmprego = localEmprego;
+	}
 	
 	public int getInscricao() {
 		return inscricao;
