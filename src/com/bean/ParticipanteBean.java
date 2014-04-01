@@ -1,7 +1,10 @@
 package com.bean;
 
+import javax.annotation.ManagedBean;
+
 import com.modelo.Participante;
 
+@ManagedBean
 public class ParticipanteBean {
 
 	private Participante participante = new Participante();
