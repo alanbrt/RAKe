@@ -5,26 +5,26 @@
 	  xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:head>
-		<title>GERACE 0.1A</title>
+		<title>RAKe</title>
 		<link rel="stylesheet" type="text/css" href="teste.css"/>
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
 	</h:head>
 	<h:body>
 		<div id="tudo">
 			<div id="top_pg">
-				<img id="logo" src="img/logo_treba.png" width="120" height="72"/>
-				<h2 id="title_pg">GERACE - Gerador Ramdomico de Amostra para Correicao Extraordinaria</h2>
+				<img id="logo" src="img/rake.ico" width="120" height="72"/>
+				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
 			</div>
 			<div id="conteudo">
-				<fieldset class="login">
-					<legend><h4>Area de Login</h4></legend>
-					<h:form>
-					Login: 
-					<h:inputText value="#{usuarioBean.usuario.login}" id="login"/><br/>
-					Senha:
-					<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"/><br/>
-					<h:commandLink value="Entrar" actionListener="#{usuarioBean.login}" imediate="true"/>
-					</h:form>
+			
+				<fieldset>
+				<legend><h4>Congressos</h4></legend>
+					<select id="congresso" name="congresso">
+						<option value=" ">Congresso</option>
+						<option value="Item2">ERBASE - Encontro Regional Bahia Alagoas e Sergipe</option>
+						<option value="Item3">Robocup 2014</option>
+						<option value="Item4">CBR - Competição Brasileira de Robótica</option>
+					</select>
 				</fieldset>
 			</div>
 			<div id="rodape">
