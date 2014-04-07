@@ -16,6 +16,7 @@ public class Avaliacao {
 	private int id;
 	
 	@ForeignKey
+	@NotNull
 	private int inscricao_fk;
 	
 	@NotNull
