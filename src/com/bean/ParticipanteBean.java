@@ -17,7 +17,18 @@ public class ParticipanteBean {
 		this.participante = participante;
 	}
 	
+	
+	public void addParticipante()
+	{
+		
+	}
+	
 	public void confirma()
+	{
+		
+	}
+	
+	public void salva()
 	{
 		
 	}
