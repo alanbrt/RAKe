@@ -27,7 +27,11 @@ public class Participante {
 	
 	private String localEmprego;
 	
-	private Cartao cartao;
+	private String numeroCartao;
+	
+	private String vencimentoCartao;
+	
+	private String marcaCartao;
 	
 	private boolean revisor;
 	
@@ -103,12 +107,30 @@ public class Participante {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Cartao getCartao() {
-		return cartao;
+	public String getNumeroCartao() {
+		return numeroCartao;
 	}
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
+
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
 	}
+
+	public String getVencimentoCartao() {
+		return vencimentoCartao;
+	}
+
+	public void setVencimentoCartao(String vencimentoCartao) {
+		this.vencimentoCartao = vencimentoCartao;
+	}
+
+	public String getMarcaCartao() {
+		return marcaCartao;
+	}
+
+	public void setMarcaCartao(String marcaCartao) {
+		this.marcaCartao = marcaCartao;
+	}
+
 	public boolean isRevisor() {
 		return revisor;
 	}
