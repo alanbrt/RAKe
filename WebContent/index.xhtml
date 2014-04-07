@@ -19,12 +19,15 @@
 			
 				<fieldset>
 				<legend><h4>Congressos</h4></legend>
-					<select id="congresso" name="congresso">
-						<option value=" ">Congresso</option>
-						<option value="Item2">ERBASE - Encontro Regional Bahia Alagoas e Sergipe</option>
-						<option value="Item3">Robocup 2014</option>
-						<option value="Item4">CBR - Competição Brasileira de Robótica</option>
-					</select>
+					<h:form>
+					<h:selectOneMenu id="congresso">
+						<f:selectItem itemValue=" " itemLabel="Congresso"></f:selectItem>
+						<f:selectItem itemValue="Item2" itemLabel="ERBASE - Encontro Regional Bahia Alagoas e Sergipe"></f:selectItem>
+						<f:selectItem itemValue="Item3" itemLabel="Robocup 2014"></f:selectItem>
+						<f:selectItem itemValue="Item4" itemLabel="CBR - Competição Brasileira de Robótica"></f:selectItem>
+					</h:selectOneMenu>
+					<h:commandButton value="Submit" action="menu.xhtml"></h:commandButton>
+					</h:form>
 				</fieldset>
 			</div>
 			<div id="rodape">

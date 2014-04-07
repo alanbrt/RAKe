@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/mask.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-			  $('.date').mask('99/99/9999');
+			  $('.date').mask('9999/99/99');
 			  $('.cep').mask('99999-999');
 			  $('.tel').mask('(99)9999-9999');
 			});
@@ -41,30 +41,30 @@
 				<fieldset>
 					<legend><h4>Endereço</h4></legend>
 					Rua:
-					<h:inputText value="#{participanteBean.participante.endereco.rua}" id="rua"/><br/>
+					<h:inputText value="#{participanteBean.participante.rua}" id="rua"/><br/>
 					Bairro:
-					<h:inputText value="#{participanteBean.participante.endereco.bairro}" id="bairro"/><br/>
+					<h:inputText value="#{participanteBean.participante.bairro}" id="bairro"/><br/>
 					Numero:
-					<h:inputText value="#{participanteBean.participante.endereco.numero}" id="numero"/><br/>
+					<h:inputText value="#{participanteBean.participante.numero}" id="numero"/><br/>
 					Complemento:
-					<h:inputText value="#{participanteBean.participante.endereco.complemento}" id="complemento"/><br/>
+					<h:inputText value="#{participanteBean.participante.complemento}" id="complemento"/><br/>
 					CEP:
-					<h:inputText class="cep" value="#{participanteBean.participante.endereco.cep}" id="cep"/><br/>
+					<h:inputText class="cep" value="#{participanteBean.participante.cep}" id="cep"/><br/>
 				</fieldset>
 				
 				<fieldset>
 					<legend><h4>Cartão</h4></legend>
 					Numero:
-					<h:inputText value="#{participanteBean.participante.cartao.numero}" id="numeroCartao"/><br/>
+					<h:inputText value="#{participanteBean.participante.numeroCartao}" id="numeroCartao"/><br/>
 					Data Vencimento:
-					<h:inputText id="dataVenc" name="dataVenc" class="date" value="#{participanteBean.participante.cartao.dataVencimento}"></h:inputText>
+					<h:inputText id="dataVenc" name="dataVenc" class="date" value="#{participanteBean.participante.vencimentoCartao}"></h:inputText>
 					Marca:
-					<select id="idMarca" name="idMarca">
-						<option value=" ">Marca</option>
-						<option value="Item2">VISA</option>
-						<option value="Item3">MASTER CARD</option>
-						<option value="Item4">ELO</option>
-					</select>
+					<h:selectOneMenu id="idMarca" name="idMarca">
+						<f:selectItem itemValue=" " itemLabel="Marca"></f:selectItem>
+						<f:selectItem itemValue="Item2" itemLabel="VISA"></f:selectItem>
+						<f:selectItem itemValue="Item3" itemLabel="MASTER CARD"></f:selectItem>
+						<f:selectItem itemValue="Item4" itemLabel="ELO"></f:selectItem>
+					</h:selectOneMenu>
 				</fieldset>
 				
 				<fieldset>
@@ -72,8 +72,8 @@
 					<h:selectBooleanCheckbox id="idRevisor" rendered="true" value="#{participanteBean.participante.revisor}"></h:selectBooleanCheckbox> Desejo ser revisor de artigos do congresso.
 				</fieldset>
 				
-				<h:commandButton value="Confirmar" actionListener="#{participanteBean.confirma}" imediate="true"/>
-				<h:commandButton value="Cancelar"  imediate="true"/>
+				<h:commandButton value="Confirmar" actionListener="#{participanteBean.grava}" ajax="false"/>
+				<h:commandButton value="Cancelar"  action="index.xhtml"/>
 				
 				</h:form>
 			</div>

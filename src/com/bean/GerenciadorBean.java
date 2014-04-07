@@ -37,4 +37,9 @@ public class GerenciadorBean {
 	{
 		
 	}
+	
+	public String getMenu()
+	{
+		return "menu.xhtml";
+	}
 }
