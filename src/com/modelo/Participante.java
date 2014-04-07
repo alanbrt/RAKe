@@ -3,10 +3,10 @@ package com.modelo;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Participante {
 
-	//@Id
+	@Id
 	private int inscricao;
 	
 	private String nome;
