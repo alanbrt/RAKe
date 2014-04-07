@@ -1,16 +1,22 @@
 package com.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import com.sun.istack.internal.NotNull;
 
 @Entity
 public class Artigo {
 
 	@Id
+	@GeneratedValue
 	private int id;
 	
+	@NotNull
 	private String resumo;
 	
+	@NotNull
 	private String titulo;
 
 	public String getTitulo() {

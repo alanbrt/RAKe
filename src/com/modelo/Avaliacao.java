@@ -1,11 +1,24 @@
 package com.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.apache.openjpa.persistence.jdbc.ForeignKey;
+
+import com.sun.istack.internal.NotNull;
+
+@Entity
 public class Avaliacao {
 
+	@Id
+	@GeneratedValue
 	private int id;
 	
+	@ForeignKey
 	private int inscricao_fk;
 	
+	@NotNull
 	private float nota;
 
 	public int getId() {
