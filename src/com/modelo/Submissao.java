@@ -1,16 +1,15 @@
 package com.modelo;
 
 import javax.persistence.Entity;
-
-import org.apache.openjpa.persistence.jdbc.ForeignKey;
+import javax.persistence.Id;
 
 @Entity
 public class Submissao {
 
-	@ForeignKey
+	@Id
 	private int inscricao_fk;
 	
-	@ForeignKey
+	@Id
 	private int id_artigo;
 
 	public int getInscricao_fk() {
