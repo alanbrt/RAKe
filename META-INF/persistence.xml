@@ -11,6 +11,8 @@
 		<class>com.modelo.Participante</class>
 		<class>com.modelo.Artigo</class>
 		<class>com.modelo.Avaliacao</class>
+		<class>com.modelo.Submissao</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rake" />
