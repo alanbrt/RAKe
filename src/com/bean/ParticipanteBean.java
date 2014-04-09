@@ -31,13 +31,10 @@ public class ParticipanteBean {
 
 	}
 	
-	public String grava()
+	public void grava()
 	{
 		System.out.println("Gravando Participante");
 		new DAO<Participante>(Participante.class).adiciona(this.participante);
-		
-		return "Gravando participante " + this.participante;
-
 		
 	}
 	
