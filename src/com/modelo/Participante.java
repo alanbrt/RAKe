@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.sun.istack.internal.NotNull;
-
 @Entity
 public class Participante {
 
@@ -13,43 +11,30 @@ public class Participante {
 	@GeneratedValue
 	private int inscricao;
 	
-	@NotNull
 	private String nome;
 	
-	@NotNull
 	private String telefone;
 	
-	@NotNull
 	private String rua;
 	
-	@NotNull
 	private String bairro;
 	
-	@NotNull
 	private String cep;
 	
-	@NotNull
 	private String numero;
 	
-	@NotNull
 	private String complemento;
 	
-	@NotNull
 	private String email;
 	
-	@NotNull
 	private String localEmprego;
 	
-	@NotNull
 	private String numeroCartao;
 	
-	@NotNull
 	private String vencimentoCartao;
 	
-	@NotNull
 	private String marcaCartao;
 	
-	@NotNull
 	private boolean revisor;
 	
 	public String getLocalEmprego() {

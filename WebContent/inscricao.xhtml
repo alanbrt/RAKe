@@ -25,39 +25,39 @@
 				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
 			</div>
 			<div id="conteudo">
-				<h:form>
+				<h:form id="inscricao">
 				<fieldset>
 					<legend><h4>Inscrição</h4></legend>
 					Nome: 
-					<h:inputText value="#{participanteBean.participante.nome}" id="nome"/><br/>
+					<h:inputText id="nome" value="#{participanteBean.participante.nome}"/><br/>
 					Email:
-					<h:inputText value="#{participanteBean.participante.email}" id="email"/><br/>
+					<h:inputText id="email" value="#{participanteBean.participante.email}"/><br/>
 					Telefone:
-					<h:inputText class="tel" value="#{participanteBean.participante.telefone}" id="telefone"/><br/>
+					<h:inputText id="telefone" class="tel" value="#{participanteBean.participante.telefone}"/><br/>
 					Local de Emprego:
-					<h:inputText value="#{participanteBean.participante.localEmprego}" id="localemprego"/><br/>					
+					<h:inputText id="localemprego" value="#{participanteBean.participante.localEmprego}"/><br/>					
 				</fieldset>
 				
 				<fieldset>
 					<legend><h4>Endereço</h4></legend>
 					Rua:
-					<h:inputText value="#{participanteBean.participante.rua}" id="rua"/><br/>
+					<h:inputText  id="rua" value="#{participanteBean.participante.rua}"/><br/>
 					Bairro:
-					<h:inputText value="#{participanteBean.participante.bairro}" id="bairro"/><br/>
+					<h:inputText id="bairro" value="#{participanteBean.participante.bairro}"/><br/>
 					Numero:
-					<h:inputText value="#{participanteBean.participante.numero}" id="numero"/><br/>
+					<h:inputText  id="numero" value="#{participanteBean.participante.numero}"/><br/>
 					Complemento:
-					<h:inputText value="#{participanteBean.participante.complemento}" id="complemento"/><br/>
+					<h:inputText  id="complemento" value="#{participanteBean.participante.complemento}"/><br/>
 					CEP:
-					<h:inputText class="cep" value="#{participanteBean.participante.cep}" id="cep"/><br/>
+					<h:inputText  id="cep" class="cep" value="#{participanteBean.participante.cep}"/><br/>
 				</fieldset>
 				
 				<fieldset>
 					<legend><h4>Cartão</h4></legend>
 					Numero:
-					<h:inputText value="#{participanteBean.participante.numeroCartao}" id="numeroCartao"/><br/>
+					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numeroCartao}"/><br/>
 					Data Vencimento:
-					<h:inputText id="dataVenc" name="dataVenc" class="date" value="#{participanteBean.participante.vencimentoCartao}"></h:inputText>
+					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.vencimentoCartao}"></h:inputText>
 					Marca:
 					<h:selectOneMenu id="idMarca" name="idMarca">
 						<f:selectItem itemValue=" " itemLabel="Marca"></f:selectItem>
@@ -72,7 +72,7 @@
 					<h:selectBooleanCheckbox id="idRevisor" rendered="true" value="#{participanteBean.participante.revisor}"></h:selectBooleanCheckbox> Desejo ser revisor de artigos do congresso.
 				</fieldset>
 				
-				<h:commandButton value="Confirmar" actionListener="#{participanteBean.grava}" ajax="false"/>
+				<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
 				<h:commandButton value="Cancelar"  action="index.xhtml"/>
 				
 				</h:form>

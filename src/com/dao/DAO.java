@@ -53,7 +53,7 @@ public class DAO<T> {
 
 	public List<T> listaTodos() {
 		EntityManager em = new JPAUtil().getEntityManager();
-		CriteriaQuery<T> query = em.getQueryBuilder().createQuery(classe);
+		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 
 		List<T> lista = em.createQuery(query).getResultList();
@@ -80,7 +80,7 @@ public class DAO<T> {
 
 	public List<T> listaTodosPaginada(int firstResult, int maxResults) {
 		EntityManager em = new JPAUtil().getEntityManager();
-		CriteriaQuery<T> query = em.getQueryBuilder().createQuery(classe);
+		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
 		query.select(query.from(classe));
 
 		List<T> lista = em.createQuery(query).setFirstResult(firstResult)

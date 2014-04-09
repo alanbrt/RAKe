@@ -1,6 +1,6 @@
 package com.bean;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 
 import com.dao.DAO;
 import com.modelo.Participante;
@@ -31,12 +31,13 @@ public class ParticipanteBean {
 
 	}
 	
-	public void grava()
+	public String grava()
 	{
-		
-		System.out.println("Gravando participante " + this.participante);
-		
+				
 		new DAO<Participante>(Participante.class).adiciona(this.participante);
+		
+		return "Gravando participante " + this.participante;
+
 		
 	}
 	

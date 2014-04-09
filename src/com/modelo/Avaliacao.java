@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.apache.openjpa.persistence.jdbc.ForeignKey;
-
 import com.sun.istack.internal.NotNull;
 
 @Entity
@@ -15,7 +13,6 @@ public class Avaliacao {
 	@GeneratedValue
 	private int id;
 	
-	@ForeignKey
 	@NotNull
 	private int inscricao_fk;
 	
