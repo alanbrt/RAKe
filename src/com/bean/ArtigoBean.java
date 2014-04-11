@@ -39,7 +39,7 @@ public class ArtigoBean {
 	
 	public String cancelar()
 	{
-		return "index.xhtml";
+		return "menu.xhtml";
 	}
 	
 	public void doUpload(FileUploadEvent fileUploadEvent)

@@ -20,21 +20,25 @@ public class ParticipanteBean {
 		this.participante = participante;
 	}
 	
-	
-	public void addParticipante()
-	{
-		
-	}
-	
 	public void confirma()
 	{
 
+
 	}
 	
-	public void grava()
+	public String cancelar()
 	{
+		return "menu.xhtml";
+	}
+	
+	public String grava()
+	{
+		confirma();
+		
 		System.out.println("Gravando Participante");
 		new DAO<Participante>(Participante.class).adiciona(this.participante);
+		
+		return "index.xhtml";
 		
 	}
 	
