@@ -53,6 +53,7 @@ public class AvaliacaoBean {
 		email.setHostName("mail.google.com"); 
 		email.addTo("alandossantossoaress@gmail.com", "Kal"); 
 		email.setFrom("rakemanage@gmail.com", "Me"); //Senha rake2014
+		email.setAuthentication("rakemanage@gmail.com", "rake2014");
 		email.setSubject("Teste Comentario RAKe"); 
 		email.setMsg(comentario);   
 		//email.attach(attachment); 

@@ -1,17 +1,26 @@
 package com.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.Id;
 
 import com.sun.istack.internal.NotNull;
 
 @Entity
-public class Avaliacao {
+public class Avaliacao implements Serializable{
 
-	@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
+	@Id
 	private int inscricao_fk;
 	
-	@JoinColumn(name="artigo_fk",referencedColumnName="id_artigo")
+	//@JoinColumn(name="artigo_fk",referencedColumnName="id_artigo")
+	@Id
 	private int artigo_fk;
 	
 	@NotNull

@@ -2,8 +2,6 @@ package com.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
 
 @Entity
 public class Telefone {
@@ -11,7 +9,7 @@ public class Telefone {
 	@Id
 	private String numero;
 	
-	@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
+	//@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
 	private int inscricao_fk;
 
 	public String getNumero() {

@@ -1,11 +1,8 @@
 package com.modelo;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Participante{
@@ -16,8 +13,7 @@ public class Participante{
 	
 	private String nome;
 	
-	@OneToMany
-	private Collection<Telefone> telefone;
+	private String telefone;
 	
 	private String rua;
 	
@@ -132,12 +128,13 @@ public class Participante{
 	public void setMarca_cartao(String marca_cartao) {
 		this.marca_cartao = marca_cartao;
 	}
-	public Collection<Telefone> getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(Collection<Telefone> telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
 	
 	
 }
