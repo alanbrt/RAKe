@@ -4,31 +4,55 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core">
 
-	<h:head>
-		<title>RAKe</title>
-		<link rel="stylesheet" type="text/css" href="teste.css"/>
-		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
-	</h:head>
-	<h:body>
-		<div id="tudo">
-			<div id="top_pg">
-				<img id="logo" src="img/rake.ico" width="120" height="72"/>
-				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
-			</div>
+<h:head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<title>eCongress</title>
+	<link rel="stylesheet" type="text/css" href="css/teste.css"/>
+	<link rel="shortcut icon" type="image/x-icon" href="img/econgress.ico"/>
+</h:head>
+
+<h:body>
+	<div id="tudo">
+		<table cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td>
+					<div id="top_pg">
+						<img id="logo" src="img/banner.png"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
 			<div id="conteudo">
 				<fieldset>
 				<legend><h4>Congressos</h4></legend>
+					<br></br><br></br><center>
+					<h:outputText value="Selecione o congresso:"/>
+					<br></br>
 					<h:form>
 					<h:selectOneMenu value="#{congressoBean.congresso.id}" id="congresso">
 						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="Submit" action="menu.xhtml"></h:commandButton>
 					</h:form>
+					<br></br><br></br></center>
 				</fieldset>
 			</div>
-			<div id="rodape">
-			</div>
-		</div>
-	</h:body>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="rodape">
+						<img id="logo" src="img/space.png"/>
+						<fieldset>
+						<center><font size="3"><b>eCongress</b> - Todos os direitos reservados. Desenvolvido pela equipe <a href="http://www.raylanss.com.br/rake">RAKe</a>.</font></center>
+						</fieldset>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</h:body>
 
 </html>
