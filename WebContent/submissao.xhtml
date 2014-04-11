@@ -2,34 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core">
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-		<title>GERACE 0.1A</title>
-		<link rel="stylesheet" type="text/css" href="teste.css"/>
+		<title>RAKe</title>
+		<link rel="stylesheet" type="text/css" href="css/teste.css"/>
 		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
 	</h:head>
 	<h:body>
-		<div id="tudo">
+		<div id="submissao">
 			<div id="top_pg">
 				<img id="logo" src="img/rake.ico" width="120" height="72"/>
 				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
 			</div>
 			<div id="conteudo">
+			 <h:form>
 				<fieldset>
 					<legend><h4>Dados dos Integrantes</h4></legend>
 					Nome
-					<h:inputText value="#{artigoBean.artigo.nome" id="nome"></h:inputText>
+					<h:inputText value="#{artigoBean.artigo.nome}" id="nome"></h:inputText>
 					Email
-					<h:inputText value="#{artigoBean.artigo.email" id="email"></h:inputText>
+					<h:inputText value="#{artigoBean.artigo.email}" id="email"></h:inputText>
 				</fieldset>
 				
 				<fieldset>
-					Resumo
-					<h:inputTextarea value="#{artigoBean.artigo.resumo}" id="resumo"></h:inputTextarea>
+					<legend><h4>Artigo</h4></legend>
 					Título
-					<h:inputTextarea value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputTextarea>
+					<h:inputText value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputText>
+					<br/>
+					<br/>
+					Resumo
+					<p:editor id="editor" value="#{artigoBean.artigo.resumo}" width="700"/> 
 				</fieldset>
+				
+				<fieldset> 
+ 					<legend><h4>Carregar arquivo</h4></legend>
+  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" showButtons="false" label="Upload" auto="true"
+  				  	update="messages" sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(pdf|pdf?g|pdf)$/"/>
+  				  	
+  				  	<p:growl id="messages" showDetail="true"/> 
+  				  	
+  				<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" ajax="false"></h:commandButton>
+				<h:commandButton value="Cancelar" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
+				
+				</fieldset>
+				
+				</h:form>
+				
 			</div>
 			<div id="rodape">
 			</div>

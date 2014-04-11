@@ -2,28 +2,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core">
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
 		<title>RAKe</title>
-		<link rel="stylesheet" type="text/css" href="teste.css"/>
+		<link rel="stylesheet" type="text/css" href="css/teste.css"/>
 		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/mask.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			  $('.nota').mask('99.99');
+			});
+		</script>
 	</h:head>
 	<h:body>
-		<div id="tudo">
+		<div id="avaliacao">
 			<div id="top_pg">
 				<img id="logo" src="img/rake.ico" width="120" height="72"/>
 				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
 			</div>
 			<div id="conteudo">
-				<fieldset class="login">
+				<fieldset>
 					<legend><h4>Avaliação do Artigo</h4></legend>
 					<h:form>
-					Nome do Artigo:
+					
+					Título do Artigo:
+					<h:outputText value="Criando coisas estranhas" id="titulo"></h:outputText>
+					
+					<br/>
 					Nota:
-					<h:inputText value="#{usuarioBean.usuario.senha}" id="senha"/><br/>
-					<h:commandLink value="Entrar" actionListener="#{usuarioBean.login}" imediate="true"/>
+					<h:inputText class="nota" value="#{avaliacaoBean.avaliacao.nota}" id="nota"/>
+					<br/>
+					
+					Comentario:
+					<h:inputTextarea rows="10" cols="100" id="comentario" value="#{avaliacaoBean.avaliacao.comentario}"></h:inputTextarea>
+					
+					Inscrição Avaliador
+					<h:inputText value="#{avaliacaoBean.avaliacao.inscricao_fk}"  id="inscricao_fk"></h:inputText>
+					
+					<br/>
+					
+					<h:commandButton value="Confirmar" action="#{avaliacaoBean.confirma}" ajax="true"/>
+					<h:commandButton value="Cancelar" action="#{avaliacaoBean.cancelar}" ajax="true"/>
+					
 					</h:form>
+					
 				</fieldset>
 			</div>
 			<div id="rodape">

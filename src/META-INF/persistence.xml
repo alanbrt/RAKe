@@ -12,6 +12,7 @@
 		<class>com.modelo.Artigo</class>
 		<class>com.modelo.Avaliacao</class>
 		<class>com.modelo.Submissao</class>
+		<class>com.modelo.Congresso</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

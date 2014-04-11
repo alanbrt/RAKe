@@ -16,15 +16,11 @@
 				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
 			</div>
 			<div id="conteudo">
-			
 				<fieldset>
 				<legend><h4>Congressos</h4></legend>
 					<h:form>
-					<h:selectOneMenu id="congresso">
-						<f:selectItem itemValue=" " itemLabel="Congresso"></f:selectItem>
-						<f:selectItem itemValue="Item2" itemLabel="ERBASE - Encontro Regional Bahia Alagoas e Sergipe"></f:selectItem>
-						<f:selectItem itemValue="Item3" itemLabel="Robocup 2014"></f:selectItem>
-						<f:selectItem itemValue="Item4" itemLabel="CBR - Competição Brasileira de Robótica"></f:selectItem>
+					<h:selectOneMenu value="#{congressoBean.congresso.id}" id="congresso">
+						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.id}" />
 					</h:selectOneMenu>
 					<h:commandButton value="Submit" action="menu.xhtml"></h:commandButton>
 					</h:form>

@@ -19,7 +19,7 @@
 		</script>
 	</h:head>
 	<h:body>
-		<div id="tudo">
+		<div id="inscricao">
 			<div id="top_pg">
 				<img id="logo" src="img/rake.ico" width="120" height="72"/>
 				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
@@ -69,11 +69,13 @@
 				
 				<fieldset>
 					<legend><h4>Revisor Voluntário</h4></legend>
+					
 					<h:selectBooleanCheckbox id="idRevisor" rendered="true" value="#{participanteBean.participante.revisor}"></h:selectBooleanCheckbox> Desejo ser revisor de artigos do congresso.
+					<br/>
+					<br/>
+					<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
+					<h:commandButton value="Cancelar"  action="index.xhtml"/>
 				</fieldset>
-				
-				<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
-				<h:commandButton value="Cancelar"  action="index.xhtml"/>
 				
 				</h:form>
 			</div>
