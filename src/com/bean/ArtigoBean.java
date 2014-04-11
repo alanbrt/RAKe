@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
+import com.dao.DAO;
 import com.modelo.Artigo;
 
 public class ArtigoBean {
@@ -32,8 +33,16 @@ public class ArtigoBean {
 		
 	}
 	
+	public void addArtigo()
+	{
+		System.out.println("Gravando Artigo");
+		new DAO<Artigo>(Artigo.class).adiciona(this.artigo);
+	}
+	
 	public String confirmar()
 	{
+		
+		addArtigo();
 		return null;
 	}
 	

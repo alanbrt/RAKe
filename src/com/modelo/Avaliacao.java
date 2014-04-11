@@ -1,41 +1,29 @@
 package com.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 import com.sun.istack.internal.NotNull;
 
 @Entity
 public class Avaliacao {
 
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	@NotNull
+	@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
 	private int inscricao_fk;
+	
+	@JoinColumn(name="artigo_fk",referencedColumnName="id_artigo")
+	private int artigo_fk;
 	
 	@NotNull
 	private float nota;
+
 	
-	@NotNull
-	private String comentario;
-
-	public String getComentario() {
-		return comentario;
+	public int getArtigo_fk() {
+		return artigo_fk;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setArtigo_fk(int artigo_fk) {
+		this.artigo_fk = artigo_fk;
 	}
 
 	public int getInscricao_fk() {

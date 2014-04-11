@@ -3,13 +3,10 @@ package com.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Participante{
-
-	/**
-	 * 
-	 */
 
 	@Id
 	@GeneratedValue
@@ -17,7 +14,8 @@ public class Participante{
 	
 	private String nome;
 	
-	private String telefone;
+	@OneToMany
+	private Telefone telefone;
 	
 	private String rua;
 	
@@ -31,24 +29,23 @@ public class Participante{
 	
 	private String email;
 	
-	private String localEmprego;
+	private String local_de_emprego;
 	
-	private String numeroCartao;
+	private String numero_cartao;
 	
-	private String vencimentoCartao;
+	private String vencimento_cartao;
 	
-	private String marcaCartao;
+	private String marca_cartao;
 	
 	private boolean revisor;
+
 	
-	public String getLocalEmprego() {
-		return localEmprego;
+	public String getLocal_de_emprego() {
+		return local_de_emprego;
 	}
-	
-	public void setLocalEmprego(String localEmprego) {
-		this.localEmprego = localEmprego;
+	public void setLocal_de_emprego(String local_de_emprego) {
+		this.local_de_emprego = local_de_emprego;
 	}
-	
 	public int getInscricao() {
 		return inscricao;
 	}
@@ -61,12 +58,7 @@ public class Participante{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+
 	public String getRua() {
 		return rua;
 	}
@@ -113,35 +105,38 @@ public class Participante{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getNumeroCartao() {
-		return numeroCartao;
-	}
-
-	public void setNumeroCartao(String numeroCartao) {
-		this.numeroCartao = numeroCartao;
-	}
-
-	public String getVencimentoCartao() {
-		return vencimentoCartao;
-	}
-
-	public void setVencimentoCartao(String vencimentoCartao) {
-		this.vencimentoCartao = vencimentoCartao;
-	}
-
-	public String getMarcaCartao() {
-		return marcaCartao;
-	}
-
-	public void setMarcaCartao(String marcaCartao) {
-		this.marcaCartao = marcaCartao;
-	}
 
 	public boolean isRevisor() {
 		return revisor;
 	}
 	public void setRevisor(boolean revisor) {
 		this.revisor = revisor;
+	}
+	public String getNumero_cartao() {
+		return numero_cartao;
+	}
+	public void setNumero_cartao(String numero_cartao) {
+		this.numero_cartao = numero_cartao;
+	}
+	public String getVencimento_cartao() {
+		return vencimento_cartao;
+	}
+	public void setVencimento_cartao(String vencimento_cartao) {
+		this.vencimento_cartao = vencimento_cartao;
+	}
+	public String getMarca_cartao() {
+		return marca_cartao;
+	}
+	public void setMarca_cartao(String marca_cartao) {
+		this.marca_cartao = marca_cartao;
+	}
+	public Telefone getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
 	} 
+	
+	
 	
 }

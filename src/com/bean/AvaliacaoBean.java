@@ -1,9 +1,9 @@
 package com.bean;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+//import java.net.URL;
 
-import org.apache.commons.mail.EmailAttachment;
+//import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
 
@@ -14,6 +14,8 @@ public class AvaliacaoBean {
 
 	private Avaliacao avaliacao = new Avaliacao();
 
+	private String comentario;
+	
 	public void addAvaliacao()
 	{
 		System.out.println("Gravando Avaliacao");
@@ -26,7 +28,7 @@ public class AvaliacaoBean {
 	}
 	public String confirma() throws MalformedURLException, EmailException
 	{
-		if(avaliacao.getNota() <= 0 || avaliacao.getComentario().length() <= 0)
+		if(avaliacao.getNota() <= 0 || comentario.length() <= 0)
 		{
 			addAvaliacao();
 			enviaComentario();
@@ -52,7 +54,7 @@ public class AvaliacaoBean {
 		email.addTo("alandossantossoaress@gmail.com", "Kal"); 
 		email.setFrom("rakemanage@gmail.com", "Me"); //Senha rake2014
 		email.setSubject("Teste Comentario RAKe"); 
-		email.setMsg(avaliacao.getComentario());   
+		email.setMsg(comentario);   
 		//email.attach(attachment); 
 		
 		// adiciona o anexo   
@@ -67,6 +69,14 @@ public class AvaliacaoBean {
 	
 	public void setAvaliacao(Avaliacao avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+	
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
 	}
 	
 }

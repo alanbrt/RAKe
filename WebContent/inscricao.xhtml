@@ -33,9 +33,9 @@
 					Email:
 					<h:inputText id="email" value="#{participanteBean.participante.email}"/><br/>
 					Telefone:
-					<h:inputText id="telefone" class="tel" value="#{participanteBean.participante.telefone}"/><br/>
+					<h:inputText id="telefone" class="tel" value="#{participanteBean.participante.telefone.numero}"/><br/>
 					Local de Emprego:
-					<h:inputText id="localemprego" value="#{participanteBean.participante.localEmprego}"/><br/>					
+					<h:inputText id="localemprego" value="#{participanteBean.participante.local_de_emprego}"/><br/>					
 				</fieldset>
 				
 				<fieldset>
@@ -55,9 +55,9 @@
 				<fieldset>
 					<legend><h4>Cartão</h4></legend>
 					Numero:
-					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numeroCartao}"/><br/>
+					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numero_cartao}"/><br/>
 					Data Vencimento:
-					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.vencimentoCartao}"></h:inputText>
+					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.vencimento_cartao}"></h:inputText>
 					Marca:
 					<h:selectOneMenu id="idMarca" name="idMarca">
 						<f:selectItem itemValue=" " itemLabel="Marca"></f:selectItem>

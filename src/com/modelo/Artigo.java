@@ -11,7 +11,7 @@ public class Artigo {
 
 	@Id
 	@GeneratedValue
-	private int id;
+	private int id_artigo;
 	
 	@NotNull
 	private String resumo;
@@ -50,20 +50,20 @@ public class Artigo {
 		this.titulo = titulo;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getResumo() {
 		return resumo;
 	}
 
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
+	}
+
+	public int getId_artigo() {
+		return id_artigo;
+	}
+
+	public void setId_artigo(int id_artigo) {
+		this.id_artigo = id_artigo;
 	}
 	
 }

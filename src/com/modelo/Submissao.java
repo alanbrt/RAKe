@@ -1,23 +1,16 @@
 package com.modelo;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
-public class Submissao implements Serializable{
+public class Submissao{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
+	@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
 	private int inscricao_fk;
 	
-	@Id
-	private int id_artigo;
+	@JoinColumn(name="id_artigo_fk",referencedColumnName="id_artigo")
+	private int id_artigo_fk;
 
 	public int getInscricao_fk() {
 		return inscricao_fk;
@@ -27,13 +20,14 @@ public class Submissao implements Serializable{
 		this.inscricao_fk = inscricao_fk;
 	}
 
-	public int getId_artigo() {
-		return id_artigo;
+	public int getId_artigo_fk() {
+		return id_artigo_fk;
 	}
 
-	public void setId_artigo(int id_artigo) {
-		this.id_artigo = id_artigo;
+	public void setId_artigo_fk(int id_artigo_fk) {
+		this.id_artigo_fk = id_artigo_fk;
 	}
+
 	
 	
 }
