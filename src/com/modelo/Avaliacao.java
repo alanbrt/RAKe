@@ -3,7 +3,9 @@ package com.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.ForeignKey;
 
 import com.sun.istack.internal.NotNull;
 
@@ -15,12 +17,12 @@ public class Avaliacao implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
-	@Id
+	@JoinColumn(name="inscricao")
+	@ForeignKey(name = "inscricao_fk")
 	private int inscricao_fk;
 	
-	//@JoinColumn(name="artigo_fk",referencedColumnName="id_artigo")
-	@Id
+	@JoinColumn(name="id_artigo")
+	@ForeignKey(name = "id_artigo_fk")
 	private int artigo_fk;
 	
 	@NotNull

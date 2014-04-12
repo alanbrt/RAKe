@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/mask.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-			  $('.date').mask('99/99/9999');
+			  $('.date').mask('9999/99/99');
 			  $('.cep').mask('99999-999');
 			  $('.tel').mask('(99)9999-9999');
 			});
@@ -92,9 +92,9 @@
 				<fieldset>
 					<legend><h4>Confirmação</h4></legend>
 					<center>
-						<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
-						<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}"/>
-					</center>
+						<h:commandButton value="Confirmar" action="#{participanteBean.grava}"></h:commandButton>
+ 						<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}"></h:commandButton>
+ 					</center>
 				</fieldset>
 				
 				</form>

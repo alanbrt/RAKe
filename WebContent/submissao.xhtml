@@ -3,40 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.org/ui">
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	
-<title>eCongress</title>
+	<title>eCongress</title>
 <!-- 	<link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
-<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
-	
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		function removeCampo() {
-			$(".removerCampo").unbind("click");
-			$(".removerCampo").bind("click", function() {
-				i = 0;
-				$(".telefones p.campoTelefone").each(function() {
-					i++;
-				});
-				if (i > 1) {
-					$(this).parent().remove();
-				}
-			});
-		}
-		removeCampo();
-		$(".adicionarCampo").click(function() {
-			novoCampo = $(".telefones p.campoTelefone:first").clone();
-			novoCampo.find("input").val("");
-			novoCampo.insertAfter(".telefones p.campoTelefone:last");
-			removeCampo();
-		});
-	});
-</script>
+	<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
 </h:head>
 
 <h:body>
@@ -57,16 +32,15 @@
 			 			
 						<fieldset>
 							<legend><h4>Dados dos Integrantes</h4></legend>
-							Inscrição
-							<div class="telefones">
-							<p class="campoTelefone">
-								<input type="text" name="telefone[]" /> 
-								<h:commandButton class="removerCampo" value="Remover Campo" onclick="location.href= #" ></h:commandButton>
-							</p>
-							</div>
-							<p>
-								<h:commandButton class="adicionarCampo" value="Adicionar Autor" onclick="location.href= #" ></h:commandButton>
-							</p>
+							Autor
+							<ui:repeat value="#{artigoBean.inscricoes}" var="t">
+							   <ui:repeat value="#{t}" var="s">
+							 		<h:outputText value="#{s}"></h:outputText><br/>
+							   </ui:repeat>
+							</ui:repeat>
+							<h:inputText value="#{artigoBean.inscricao}" id="nome"></h:inputText>
+							<h:commandButton value="Adicionar Autor" actionListener="#{artigoBean.addAutor}" ajax="false"/>
+						
 						</fieldset>
 					
 						<fieldset>

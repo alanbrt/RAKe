@@ -4,9 +4,12 @@ package com.bean;
 //import javax.faces.context.FacesContext;
 //import org.primefaces.event.FileUploadEvent;  
 //import org.primefaces.model.UploadedFile; 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FileUploadEvent;
@@ -17,6 +20,8 @@ import com.modelo.Artigo;
 import com.modelo.Participante;
 import com.modelo.Submissao;
 
+@ManagedBean
+@ApplicationScoped
 public class ArtigoBean {
 
 	private Artigo artigo = new Artigo();
@@ -27,7 +32,11 @@ public class ArtigoBean {
 	
 	private int inscricao;
 	
-	
+	public ArtigoBean()
+	{
+		inscricoes = new ArrayList<Integer>();
+		
+	}
 	public long getTamArquivo() {
 		return tamArquivo;
 	}
@@ -96,11 +105,13 @@ public class ArtigoBean {
 					
 					new DAO<Submissao>(Submissao.class).adiciona(submissao);
 				}
+				
+				return "index.xhtml";
 			}
 		}
 		
 		
-		return null;
+		return "menu.xhtml";
 	}
 	
 	public String cancelar()
@@ -119,11 +130,11 @@ public class ArtigoBean {
 		facesContext.addMessage(null, new FacesMessage("Sucesso", infoAboutFile)); 
 	}
 	
-	public String addAutor()
+	public void addAutor()
 	{
 		inscricoes.add(inscricao);
 		
-		return "";
+		System.out.println(inscricoes);
 	}
     
 }

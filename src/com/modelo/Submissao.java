@@ -3,7 +3,9 @@ package com.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 public class Submissao implements Serializable{
@@ -13,12 +15,12 @@ public class Submissao implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//@JoinColumn(name="inscricao_fk",referencedColumnName="inscricao")
-	@Id
+	@JoinColumn(name="inscricao")
+	@ForeignKey(name = "inscricao_fk")
 	private int inscricao_fk;
 	
-	//@JoinColumn(name="id_artigo_fk",referencedColumnName="id_artigo")
-	@Id
+	@JoinColumn(name="id_artigo")
+	@ForeignKey(name = "id_artigo_fk")
 	private int id_artigo_fk;
 
 	public int getInscricao_fk() {

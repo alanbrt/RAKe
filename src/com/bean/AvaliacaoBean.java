@@ -3,6 +3,9 @@ package com.bean;
 import java.net.MalformedURLException;
 //import java.net.URL;
 
+
+import javax.annotation.ManagedBean;
+
 //import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
@@ -10,6 +13,7 @@ import org.apache.commons.mail.MultiPartEmail;
 import com.dao.DAO;
 import com.modelo.Avaliacao;
 
+@ManagedBean
 public class AvaliacaoBean {
 
 	private Avaliacao avaliacao = new Avaliacao();

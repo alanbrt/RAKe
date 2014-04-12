@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.sun.istack.internal.NotNull;
 
 @Entity
 public class Congresso {
@@ -13,13 +12,13 @@ public class Congresso {
 	@GeneratedValue
 	private int id;
 	
-	@NotNull
+	
 	private String nome;
 
-	@NotNull
+	
 	private String dataInscricao;
 	
-	@NotNull
+	
 	private String dataSubmissao;
 	
 	public String getDataInscricao() {
