@@ -1,48 +1,27 @@
 package com.modelo;
 
-import java.io.Serializable;
-
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-
-import org.hibernate.annotations.ForeignKey;
 
 import com.sun.istack.internal.NotNull;
 
 @Entity
-public class Avaliacao implements Serializable{
+public class Avaliacao{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	@JoinColumn(name="inscricao")
-	@ForeignKey(name = "inscricao_fk")
-	private int inscricao_fk;
+	@EmbeddedId
+	private ChaveComposta id_avaliacao = new ChaveComposta();
 	
-	@JoinColumn(name="id_artigo")
-	@ForeignKey(name = "id_artigo_fk")
-	private int artigo_fk;
-	
+
 	@NotNull
 	private float nota;
 
-	
-	public int getArtigo_fk() {
-		return artigo_fk;
+	public ChaveComposta getId_avaliacao() {
+		return id_avaliacao;
 	}
 
-	public void setArtigo_fk(int artigo_fk) {
-		this.artigo_fk = artigo_fk;
-	}
-
-	public int getInscricao_fk() {
-		return inscricao_fk;
-	}
-
-	public void setInscricao_fk(int inscricao_fk) {
-		this.inscricao_fk = inscricao_fk;
+	public void setId_avaliacao(ChaveComposta id_avaliacao) {
+		this.id_avaliacao = id_avaliacao;
 	}
 
 	public float getNota() {

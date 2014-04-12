@@ -2,7 +2,7 @@ package com.bean;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
+import javax.annotation.ManagedBean;
 
 import com.dao.DAO;
 import com.modelo.Congresso;
@@ -21,7 +21,7 @@ public class CongressoBean{
 	}
 	
 	public List<Congresso> getCongressos() {
-		return new DAO<Congresso>(Congresso.class).listaTodos();
+		return  new DAO<Congresso>(Congresso.class).listaTodos();
 	}
 
 }

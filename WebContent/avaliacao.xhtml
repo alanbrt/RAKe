@@ -44,13 +44,13 @@
 					<br/>
 					<h:inputTextarea rows="10" cols="100" id="comentario" value="#{avaliacaoBean.comentario}"></h:inputTextarea><br/>
 					Inscrição
-					<h:inputText value="#{avaliacaoBean.avaliacao.inscricao_fk}"  id="inscricao_fk"></h:inputText>
+					<h:inputText value="#{avaliacaoBean.avaliacao.id_avaliacao.inscricao_fk}"  id="inscricao_fk"></h:inputText>
 					
 					<br/>
 					
 					<center>
-						<h:commandButton value="Confirmar" action="#{avaliacaoBean.confirma}" ajax="true"/>
-						<h:commandButton value="Cancelar" action="#{avaliacaoBean.cancelar}" ajax="true"/>
+						<h:commandButton value="Confirmar" action="#{avaliacaoBean.confirma}" ajax="false"/>
+						<h:commandButton value="Cancelar" action="#{avaliacaoBean.cancelar}" ajax="false"/>
 					</center>
 					
 					</h:form>

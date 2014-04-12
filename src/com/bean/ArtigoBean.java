@@ -100,8 +100,8 @@ public class ArtigoBean {
 				{
 					Submissao submissao = new Submissao();
 					
-					submissao.setInscricao_fk(inscricao);
-					submissao.setId_artigo_fk(id);
+					submissao.getId_submissao().setInscricao_fk(inscricao);
+					submissao.getId_submissao().setId_artigo_fk(id);
 					
 					new DAO<Submissao>(Submissao.class).adiciona(submissao);
 				}

@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.sun.istack.internal.NotNull;
-
 @Entity
 public class Artigo {
 
@@ -13,10 +11,8 @@ public class Artigo {
 	@GeneratedValue
 	private int id_artigo;
 	
-	@NotNull
 	private String resumo;
 	
-	@NotNull
 	private String titulo;
 
 	public String getTitulo() {

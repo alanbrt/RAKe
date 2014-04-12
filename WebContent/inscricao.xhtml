@@ -4,20 +4,22 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core">
 
-	<h:head>
-		<title>eCongress</title>
-		<!-- <link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
-		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/mask.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-			  $('.date').mask('9999/99/99');
-			  $('.cep').mask('99999-999');
-			  $('.tel').mask('(99)9999-9999');
-			});
-		</script>
-	</h:head>
+<h:head>
+<title>eCongress</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
+<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/mask.js"></script>
+		
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $('.date').mask('9999/99/99');
+	  $('.cep').mask('99999-999');
+	  $('.tel').mask('(99)9999-9999');
+	});
+</script>
+
+</h:head>
 
 <h:body>
 	<div id="tudo">
@@ -32,7 +34,7 @@
 			<tr>
 				<td>
 				<div id="congresso">
-				<form>
+				<h:form>
 				<fieldset>
 					<legend><h4>Dados Pessoais</h4></legend>
 					Nome: 
@@ -50,36 +52,36 @@
 				<fieldset>
 					<legend><h4>Endereço</h4></legend>
 					Rua:
-					<h:inputText  id="rua" value="#{participanteBean.participante.rua}"/>
+					<h:inputText  id="rua" value="#{participanteBean.participante.endereco.rua}"/>
 					Bairro:
-					<h:inputText id="bairro" value="#{participanteBean.participante.bairro}"/><br/>
+					<h:inputText id="bairro" value="#{participanteBean.participante.endereco.bairro}"/><br/>
 					Numero:
-					<h:inputText  id="numero" value="#{participanteBean.participante.numero}"/>
+					<h:inputText  id="numero" value="#{participanteBean.participante.endereco.numero}"/>
 					Complemento:
-					<h:inputText  id="complemento" value="#{participanteBean.participante.complemento}"/>
+					<h:inputText  id="complemento" value="#{participanteBean.participante.endereco.complemento}"/>
 					CEP:
-					<h:inputText  id="cep" class="cep" value="#{participanteBean.participante.cep}"/><br/>
+					<h:inputText  id="cep" class="cep" value="#{participanteBean.participante.endereco.cep}"/><br/>
 				</fieldset>
 				
 				<fieldset>
 					<legend><h4>Cartão</h4></legend>
 					Numero:
-					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numero_cartao}"/>
+					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.cartao.numero_cartao}"/>
 					Data Vencimento:
-					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.vencimento_cartao}"></h:inputText>
+					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.cartao.vencimento_cartao}"></h:inputText>
 					Marca:
-					<h:selectOneMenu id="idMarca" name="idMarca">
+					<h:selectOneMenu value="#{participanteBean.participante.cartao.marca_cartao}" name="idMarca">
 						<f:selectItem itemValue=" " itemLabel="Marca"></f:selectItem>
-						<f:selectItem itemValue="Item2" itemLabel="VISA"></f:selectItem>
-						<f:selectItem itemValue="Item3" itemLabel="MASTER CARD"></f:selectItem>
-						<f:selectItem itemValue="Item4" itemLabel="ELO"></f:selectItem>
+						<f:selectItem itemValue="VISA" itemLabel="VISA"></f:selectItem>
+						<f:selectItem itemValue="MASTER CARD" itemLabel="MASTER CARD"></f:selectItem>
+						<f:selectItem itemValue="ELO" itemLabel="ELO"></f:selectItem>
 					</h:selectOneMenu>
 				</fieldset>
 				
 				<fieldset>
 				<legend><h4>Congresso</h4></legend>
 					<h:outputText value="Selecione o congresso:"/>
-					<h:selectOneMenu value="#{congressoBean.congresso.id}" id="congresso">
+					<h:selectOneMenu value="#{participanteBean.participante.congresso}" id="congresso">
 						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.id}" />
 					</h:selectOneMenu>
 				</fieldset>
@@ -92,12 +94,12 @@
 				<fieldset>
 					<legend><h4>Confirmação</h4></legend>
 					<center>
-						<h:commandButton value="Confirmar" action="#{participanteBean.grava}"></h:commandButton>
- 						<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}"></h:commandButton>
+						<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"></h:commandButton>
+ 						<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}" ajax="false"></h:commandButton>
  					</center>
 				</fieldset>
 				
-				</form>
+				 </h:form>
 				</div>
 				</td>
 			</tr>
