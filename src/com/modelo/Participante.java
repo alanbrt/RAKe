@@ -13,7 +13,9 @@ public class Participante{
 	
 	private String nome;
 	
-	private String telefone;
+	private String telefone_fixo;
+	
+	private String celular;
 	
 	private String rua;
 	
@@ -36,8 +38,16 @@ public class Participante{
 	private String marca_cartao;
 	
 	private boolean revisor;
+	
+	private String congresso;
 
 	
+	public String getCongresso() {
+		return congresso;
+	}
+	public void setCongresso(String congresso) {
+		this.congresso = congresso;
+	}
 	public String getLocal_de_emprego() {
 		return local_de_emprego;
 	}
@@ -128,11 +138,17 @@ public class Participante{
 	public void setMarca_cartao(String marca_cartao) {
 		this.marca_cartao = marca_cartao;
 	}
-	public String getTelefone() {
-		return telefone;
+	public String getTelefone_fixo() {
+		return telefone_fixo;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone_fixo(String telefone_fixo) {
+		this.telefone_fixo = telefone_fixo;
+	}
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	

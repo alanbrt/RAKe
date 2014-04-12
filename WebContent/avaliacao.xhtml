@@ -6,8 +6,8 @@
 	  xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-		<title>RAKe</title>
-		<link rel="stylesheet" type="text/css" href="css/teste.css"/>
+		<title>eCongress</title>
+		<!-- <link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
 		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/mask.js"></script>
@@ -18,11 +18,17 @@
 		</script>
 	</h:head>
 	<h:body>
-		<div id="avaliacao">
-			<div id="top_pg">
-				<img id="logo" src="img/rake.ico" width="120" height="72"/>
-				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
-			</div>
+	<div id="tudo">
+		<table cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td>
+					<div id="top_pg">
+						<img id="logo" src="img/banner.png"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
 			<div id="conteudo">
 				<fieldset>
 					<legend><h4>Avaliação do Artigo</h4></legend>
@@ -33,27 +39,38 @@
 					
 					<br/>
 					Nota:
-					<h:inputText class="nota" value="#{avaliacaoBean.avaliacao.nota}" id="nota"/>
-					<br/>
-					
+					<h:inputText class="nota" value="#{avaliacaoBean.avaliacao.nota}" id="nota"/><br/>
 					Comentario:
-					<h:inputTextarea rows="10" cols="100" id="comentario" value="#{avaliacaoBean.comentario}"></h:inputTextarea>
-					
-					Inscrição Avaliador
+					<br/>
+					<h:inputTextarea rows="10" cols="100" id="comentario" value="#{avaliacaoBean.comentario}"></h:inputTextarea><br/>
+					Inscrição
 					<h:inputText value="#{avaliacaoBean.avaliacao.inscricao_fk}"  id="inscricao_fk"></h:inputText>
 					
 					<br/>
 					
-					<h:commandButton value="Confirmar" action="#{avaliacaoBean.confirma}" ajax="true"/>
-					<h:commandButton value="Cancelar" action="#{avaliacaoBean.cancelar}" ajax="true"/>
+					<center>
+						<h:commandButton value="Confirmar" action="#{avaliacaoBean.confirma}" ajax="true"/>
+						<h:commandButton value="Cancelar" action="#{avaliacaoBean.cancelar}" ajax="true"/>
+					</center>
 					
 					</h:form>
 					
 				</fieldset>
 			</div>
-			<div id="rodape">
-			</div>
-		</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="rodape">
+						<img id="logo" src="img/space.png"/>
+						<fieldset>
+						<center><font size="3"><b>eCongress</b> - Todos os direitos reservados. Desenvolvido pela equipe <a href="http://www.raylanss.com.br/rake">RAKe</a>.</font></center>
+						</fieldset>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 	</h:body>
 
 </html>

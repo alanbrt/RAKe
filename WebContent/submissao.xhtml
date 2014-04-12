@@ -5,55 +5,84 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>RAKe</title>
-		<link rel="stylesheet" type="text/css" href="css/teste.css"/>
-		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
-	</h:head>
-	<h:body>
-		<div id="submissao">
-			<div id="top_pg">
-				<img id="logo" src="img/rake.ico" width="120" height="72"/>
-				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
-			</div>
-			<div id="conteudo">
-			 <h:form>
-				<fieldset>
-					<legend><h4>Dados dos Integrantes</h4></legend>
-					Nome
-					<h:inputText value="#{artigoBean.artigo.nome}" id="nome"></h:inputText>
-					Email
-					<h:inputText value="#{artigoBean.artigo.email}" id="email"></h:inputText>
-				</fieldset>
-				
-				<fieldset>
-					<legend><h4>Artigo</h4></legend>
-					Título
-					<h:inputText value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputText>
-					<br/>
-					<br/>
-					Resumo
-					<p:editor id="editor" value="#{artigoBean.artigo.resumo}" width="700"/> 
-				</fieldset>
-				
-				<fieldset> 
- 					<legend><h4>Carregar arquivo</h4></legend>
-  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" showButtons="false" label="Upload" auto="true"
-  				  	update="messages" sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(pdf|pdf?g|pdf)$/"/>
-  				  	
-  				  	<p:growl id="messages" showDetail="true"/> 
-  				  	
-  				<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" ajax="false"></h:commandButton>
-				<h:commandButton value="Cancelar" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
-				
-				</fieldset>
-				
-				</h:form>
-				
-			</div>
-			<div id="rodape">
-			</div>
-		</div>
-	</h:body>
+<h:head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<title>eCongress</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
+	<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
+</h:head>
+
+<h:body>
+	<div id="tudo">
+		<table cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td>
+					<div id="top_pg">
+						<img id="logo" src="img/banner.png" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="congresso">
+					
+			 			<h:form>
+			 			
+						<fieldset>
+							<legend><h4>Dados dos Integrantes</h4></legend>
+							Nome
+							<h:inputText value="#{artigoBean.artigo.nome}" id="nome"></h:inputText>
+							Email
+							<h:inputText value="#{artigoBean.artigo.email}" id="email"></h:inputText>
+						</fieldset>
+					
+						<fieldset>
+							<legend><h4>Artigo</h4></legend>
+							Título
+							<h:inputText value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputText><br/><br/>
+							Resumo
+							<p:editor id="editor" value="#{artigoBean.artigo.resumo}" width="1000"/> 
+						</fieldset>
+						
+						<fieldset> 
+						 	<legend><h4>Carregar arquivo</h4></legend>
+		  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" showButtons="false" label="Upload" auto="true"
+		  				  	update="messages" sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(pdf|pdf?g|pdf)$/"/>
+		  				  	
+		  				  	<p:growl id="messages" showDetail="true"/> 
+		  				  	
+		  				  	<br/>
+		  				  	
+		  				  	<center>
+		  						<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" ajax="false"></h:commandButton>
+								<h:commandButton value="Cancelar" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
+							</center>
+						</fieldset>
+						
+						</h:form>
+						
+						<br></br>
+						<br></br>					
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="rodape">
+						<img id="logo" src="img/space.png" />
+						<fieldset>
+							<center>
+								<font size="3"><b>eCongress</b> - Todos os direitos
+									reservados. Desenvolvido pela equipe <a
+									href="http://www.raylanss.com.br/rake">RAKe</a>.</font>
+							</center>
+						</fieldset>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</h:body>
 
 </html>

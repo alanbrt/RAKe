@@ -5,49 +5,58 @@
 	  xmlns:f="http://java.sun.com/jsf/core">
 
 	<h:head>
-		<title>RAKe</title>
-		<link rel="stylesheet" type="text/css" href="css/teste.css"/>
+		<title>eCongress</title>
+		<!-- <link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
 		<link rel="shortcut icon" type="image/x-icon" href="img/rake.ico"/>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/mask.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-			  $('.date').mask('9999/99/99');
+			  $('.date').mask('99/99/9999');
 			  $('.cep').mask('99999-999');
 			  $('.tel').mask('(99)9999-9999');
 			});
 		</script>
 	</h:head>
-	<h:body>
-		<div id="inscricao">
-			<div id="top_pg">
-				<img id="logo" src="img/rake.ico" width="120" height="72"/>
-				<h2 id="title_pg">RAKe - Sistema de Controle de Submissão de Artigos</h2>
-			</div>
-			<div id="conteudo">
-				<h:form id="inscricao">
+
+<h:body>
+	<div id="tudo">
+		<table cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td>
+					<div id="top_pg">
+						<img id="logo" src="img/banner.png" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div id="congresso">
+				<form>
 				<fieldset>
-					<legend><h4>Inscrição</h4></legend>
+					<legend><h4>Dados Pessoais</h4></legend>
 					Nome: 
 					<h:inputText id="nome" value="#{participanteBean.participante.nome}"/><br/>
 					Email:
 					<h:inputText id="email" value="#{participanteBean.participante.email}"/><br/>
-					Telefone:
-					<h:inputText id="telefone" class="tel" value="#{participanteBean.participante.telefone}"/><br/>
+					Telefone Fixo:
+					<h:inputText id="telefone_fixo" class="tel" value="#{participanteBean.participante.telefone_fixo}"/><br/>
+					Celular:
+					<h:inputText id="celular" class="tel" value="#{participanteBean.participante.celular}"/><br/>
 					Local de Emprego:
-					<h:inputText id="localemprego" value="#{participanteBean.participante.local_de_emprego}"/><br/>					
+					<h:inputText id="localemprego" value="#{participanteBean.participante.local_de_emprego}"/><br/>
 				</fieldset>
 				
 				<fieldset>
 					<legend><h4>Endereço</h4></legend>
 					Rua:
-					<h:inputText  id="rua" value="#{participanteBean.participante.rua}"/><br/>
+					<h:inputText  id="rua" value="#{participanteBean.participante.rua}"/>
 					Bairro:
 					<h:inputText id="bairro" value="#{participanteBean.participante.bairro}"/><br/>
 					Numero:
-					<h:inputText  id="numero" value="#{participanteBean.participante.numero}"/><br/>
+					<h:inputText  id="numero" value="#{participanteBean.participante.numero}"/>
 					Complemento:
-					<h:inputText  id="complemento" value="#{participanteBean.participante.complemento}"/><br/>
+					<h:inputText  id="complemento" value="#{participanteBean.participante.complemento}"/>
 					CEP:
 					<h:inputText  id="cep" class="cep" value="#{participanteBean.participante.cep}"/><br/>
 				</fieldset>
@@ -55,7 +64,7 @@
 				<fieldset>
 					<legend><h4>Cartão</h4></legend>
 					Numero:
-					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numero_cartao}"/><br/>
+					<h:inputText  id="numeroCartao" value="#{participanteBean.participante.numero_cartao}"/>
 					Data Vencimento:
 					<h:inputText id="dataVenc" class="date" value="#{participanteBean.participante.vencimento_cartao}"></h:inputText>
 					Marca:
@@ -68,20 +77,46 @@
 				</fieldset>
 				
 				<fieldset>
-					<legend><h4>Revisor Voluntário</h4></legend>
-					
-					<h:selectBooleanCheckbox id="idRevisor" rendered="true" value="#{participanteBean.participante.revisor}"></h:selectBooleanCheckbox> Desejo ser revisor de artigos do congresso.
-					<br/>
-					<br/>
-					<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
-					<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}"/>
+				<legend><h4>Congresso</h4></legend>
+					<h:outputText value="Selecione o congresso:"/>
+					<h:selectOneMenu value="#{congressoBean.congresso.id}" id="congresso">
+						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.id}" />
+					</h:selectOneMenu>
 				</fieldset>
 				
-				</h:form>
-			</div>
-			<div id="rodape">
-			</div>
-		</div>
+				<fieldset>
+					<legend><h4>Revisor Voluntário</h4></legend>
+					<h:selectBooleanCheckbox id="idRevisor" rendered="true" value="#{participanteBean.participante.revisor}"></h:selectBooleanCheckbox> Desejo ser revisor de artigos do congresso.
+				</fieldset>
+				
+				<fieldset>
+					<legend><h4>Confirmação</h4></legend>
+					<center>
+						<h:commandButton value="Confirmar" action="#{participanteBean.grava}" ajax="false"/>
+						<h:commandButton value="Cancelar"  action="#{participanteBean.cancelar}"/>
+					</center>
+				</fieldset>
+				
+				</form>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="rodape">
+						<img id="logo" src="img/space.png" />
+						<fieldset>
+							<center>
+								<font size="3"><b>eCongress</b> - Todos os direitos
+									reservados. Desenvolvido pela equipe <a
+									href="http://www.raylanss.com.br/rake">RAKe</a>.</font>
+							</center>
+						</fieldset>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 	</h:body>
 
 </html>

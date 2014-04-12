@@ -16,6 +16,28 @@ public class Congresso {
 	@NotNull
 	private String nome;
 
+	@NotNull
+	private String dataInscricao;
+	
+	@NotNull
+	private String dataSubmissao;
+	
+	public String getDataInscricao() {
+		return dataInscricao;
+	}
+
+	public void setDataInscricao(String dataInscricao) {
+		this.dataInscricao = dataInscricao;
+	}
+
+	public String getDataSubmissao() {
+		return dataSubmissao;
+	}
+
+	public void setDataSubmissao(String dataSubmissao) {
+		this.dataSubmissao = dataSubmissao;
+	}
+
 	public int getId() {
 		return id;
 	}
