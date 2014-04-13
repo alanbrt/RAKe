@@ -136,5 +136,10 @@ public class ArtigoBean {
 		
 		System.out.println(inscricoes);
 	}
-    
+ 
+	public List<Artigo> getListaArtigos()
+	{
+		return new DAO<Artigo>(Artigo.class).listaTodos();
+		
+	}
 }
