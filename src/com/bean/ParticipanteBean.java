@@ -57,7 +57,7 @@ public class ParticipanteBean {
 		
 		// Cria a mensagem de e-mail 
 		Email email = new SimpleEmail(); 
-		
+		System.out.println(p.getEmail());
 		email.setHostName("smtp.googlemail.com"); 
 		email.setSmtpPort(465);
 		email.setSSLOnConnect(true);

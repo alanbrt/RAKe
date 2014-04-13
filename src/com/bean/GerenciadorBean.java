@@ -31,9 +31,13 @@ public class GerenciadorBean {
 	public void enviaEmail(int id, Artigo a) throws EmailException, MalformedURLException
 	{
 		Participante p = new DAO<Participante>(Participante.class).buscaPorId(id);
-		String link = "localhost:8080/RAKe/avaliacao.xhtml";
-		// Cria a mensagem de e-mail 
+		String nome = p.getNome().replace(" ", "%20");
+		String titulo = a.getTitulo().replace(" ", "%20");
+
+		String link= "http://localhost:8080/RAKe/avaliacao.xhtml?revisor="+nome+"&inscricao="+p.getInscricao()
+				+"&titulo="+titulo+"&artigo="+a.getId_artigo();
 		
+		// Cria a mensagem de e-mail 
 		EmailAttachment attachment = new EmailAttachment(); 
 		attachment.setURL(new URL("http://www.apache.org/images/asf_logo_wide.gif"));
 		attachment.setDisposition(EmailAttachment.ATTACHMENT); 
@@ -49,7 +53,7 @@ public class GerenciadorBean {
 		email.setFrom("rakemanage@gmail.com", "eCongress"); //Senha rake2014
 		email.setAuthentication("rakemanage@gmail.com", "rake2014");
 		email.setSubject("eCongress - Avaliacao de Artigo"); 
-		email.setMsg(" Ola, "+p.getNome()+ ".\n Segue em anexo o artigo para avaliacao.\n"
+		email.setMsg("Ola, "+p.getNome()+ ".\nSegue em anexo o artigo para avaliacao.\n"
 				+ "A avaliacao deve ser feita através do link abaixo:\n"
 		+ link+"\nOs campos nota e comentário são obrigatórios.\nNota entre 0-10.\n"
 				+ "Comentário de no máximo 250 caracteres.\nAtenciosamente, eCongress");   
@@ -81,7 +85,7 @@ public class GerenciadorBean {
 		ParticipanteBean bean = new ParticipanteBean();
 		List<Participante> revisores =  new ArrayList<Participante>();
 		int count = 0;
-		List<Integer> r =  new ArrayList<Integer>(5);
+		List<Integer> r =  new ArrayList<Integer>();
 		
 		boolean randomOK = false;
 		
@@ -90,14 +94,19 @@ public class GerenciadorBean {
 		
 		while(!randomOK)
 		{
+			r.clear();
+			
 			for(int i=0;i<5;i++)
 				r.add(1+(int)(revisores.size()*Math.random()));
 			
 		    for(int i=0;i<5;i++)
 			for(int j=0;j<5;j++)
-				if(r.get(i).equals(r.get(j))) count++;
+				if(!r.get(i).equals(r.get(j))) count++;
 		    
-		    if(count == 5) randomOK = true;
+		    System.out.println(count);
+		    if(count == 20) randomOK = true;
+		    
+		    count = 0;
 		}
 	    
 		return r;
@@ -114,4 +123,10 @@ public class GerenciadorBean {
 	{
 		return "menu.xhtml";
 	}
+	
+//	public static void main(String[]arg) throws MalformedURLException, EmailException
+//	{
+//		GerenciadorBean bean = new GerenciadorBean();
+//		bean.enviaArtigo();
+//	}
 }
