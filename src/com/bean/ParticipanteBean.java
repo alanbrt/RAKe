@@ -1,6 +1,8 @@
 package com.bean;
 
 
+import java.util.List;
+
 import javax.annotation.ManagedBean;
 
 import org.apache.commons.mail.Email;
@@ -25,10 +27,26 @@ public class ParticipanteBean {
 		this.participante = participante;
 	}
 	
-	public void validaCampos()
+	public boolean validaCampos()
 	{
 
+		if((!participante.getNome().isEmpty()) && (!participante.getEmail().isEmpty()) &&
+				!participante.getCartao().getMarca_cartao().isEmpty() && 
+				!participante.getCartao().getNumero_cartao().isEmpty() &&
+				!participante.getCartao().getVencimento_cartao().isEmpty() &&
+				!participante.getCelular().isEmpty() &&
+				!participante.getTelefone_fixo().isEmpty() &&
+				!participante.getCongresso().isEmpty() &&
+				!participante.getEndereco().getBairro().isEmpty() &&
+				!participante.getEndereco().getCep().isEmpty() &&
+				!participante.getEndereco().getComplemento().isEmpty() &&
+				!participante.getEndereco().getNumero().isEmpty() &&
+				!participante.getEndereco().getRua().isEmpty())
+		{
+			return true;
+		}
 
+		return false;
 	}
 	
 	public void enviaEmail() throws EmailException
@@ -61,7 +79,10 @@ public class ParticipanteBean {
 	
 	public String grava() throws EmailException
 	{ 		
-		validaCampos();
+		if(validaCampos())
+		{
+			
+		}
 		
 		System.out.println("Gravando Participante");
 		new DAO<Participante>(Participante.class).adiciona(this.participante);
@@ -70,6 +91,10 @@ public class ParticipanteBean {
 		
 		return "index.xhtml";
 		
+	}
+	
+	public List<Participante> getParticipantes() {
+		return  new DAO<Participante>(Participante.class).listaTodos();
 	}
 	
 	
