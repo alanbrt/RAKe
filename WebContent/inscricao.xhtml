@@ -84,7 +84,7 @@
 				<legend><h4>Congresso</h4></legend>
 					<h:outputText value="Selecione o congresso:"/>
 					<h:selectOneMenu value="#{participanteBean.participante.congresso}" id="congresso">
-						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.id}" />
+						<f:selectItems value="#{congressoBean.congressos}" var="congresso" itemLabel="#{congresso.nome}" itemValue="#{congresso.nome}" />
 					</h:selectOneMenu>
 				</fieldset>
 				
