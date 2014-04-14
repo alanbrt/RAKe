@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -28,7 +29,7 @@ public class GerenciadorBean {
 
     public static final long TEMPO_RESULTADO = (1000 * 86400); // 24 HORAS
     public static final long TEMPO_AVALIACAO = (1000 * 432000); // 5 DIAS
-
+    public static final int MAX_ACEITOS = 3;
     
 	public void geraCertificado()
 	{
@@ -181,13 +182,15 @@ public class GerenciadorBean {
 	}
 	
 	
-	public void getArtigosAceitos()
+	public String getArtigosAceitos()
 	{
 		List<Avaliacao> avaliacoes = new AvaliacaoBean().getListaAvaliacao();
 		List<Artigo> artigos = new ArtigoBean().getListaArtigos();
 		Map<Integer,Float> artigosAceitos = new HashMap<Integer, Float>();
 		MapValueComparator comparator = new MapValueComparator(artigosAceitos);
 		Map<Integer,Float> artigosOrdenados = new TreeMap<Integer, Float>(comparator);
+		List<Integer> id = new ArrayList<Integer>();
+		String cmd="";
 		
 		for(Artigo a : artigos)
 		{
@@ -212,10 +215,20 @@ public class GerenciadorBean {
 
 		artigosOrdenados.putAll(artigosAceitos);
 		
-		System.out.println(artigosOrdenados);
+		Iterator<Integer> it = artigosOrdenados.keySet().iterator();
 		
-		artigosAceitos.clear();
+		while(it.hasNext())	id.add(it.next());
 		
+		for(int i = id.size()-1; i >= id.size()-MAX_ACEITOS; i--) 
+		{
+			int chave = id.get(i);
+			Artigo a = new DAO<Artigo>(Artigo.class).buscaPorId(chave);
+			cmd+="Artigo - "+ a.getResumo()+" | Nota : "+ artigosOrdenados.get(chave)+"\n";
+		}
+		
+		System.out.println(cmd);
+		
+		return cmd;
 	}
 	
 	public String getMenu()
