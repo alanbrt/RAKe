@@ -61,7 +61,7 @@ public class DAO<T> {
 		em.close();
 		return lista;
 	}
-
+	
 	public T buscaPorId(Integer id) {
 		EntityManager em = new JPAUtil().getEntityManager();
 		T instancia = em.find(classe, id);
@@ -89,5 +89,6 @@ public class DAO<T> {
 		em.close();
 		return lista;
 	}
-
+	
+	
 }

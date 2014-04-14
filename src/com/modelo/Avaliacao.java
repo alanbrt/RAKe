@@ -14,7 +14,7 @@ public class Avaliacao{
 	
 
 	@NotNull
-	private float nota;
+	private String nota;
 
 	public ChaveComposta getId_avaliacao() {
 		return id_avaliacao;
@@ -24,13 +24,15 @@ public class Avaliacao{
 		this.id_avaliacao = id_avaliacao;
 	}
 
-	public float getNota() {
+	public String getNota() {
 		return nota;
 	}
 
-	public void setNota(float nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
+
+
 	
 	
 }

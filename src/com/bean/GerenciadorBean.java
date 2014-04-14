@@ -2,8 +2,13 @@ package com.bean;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.ManagedBean;
 
@@ -13,11 +18,18 @@ import org.apache.commons.mail.MultiPartEmail;
 
 import com.dao.DAO;
 import com.modelo.Artigo;
+import com.modelo.Avaliacao;
+import com.modelo.Congresso;
 import com.modelo.Participante;
+import com.utils.MapValueComparator;
 
 @ManagedBean
 public class GerenciadorBean {
 
+    public static final long TEMPO_RESULTADO = (1000 * 86400); // 24 HORAS
+    public static final long TEMPO_AVALIACAO = (1000 * 432000); // 5 DIAS
+
+    
 	public void geraCertificado()
 	{
 		
@@ -113,9 +125,96 @@ public class GerenciadorBean {
 		
 	}
 	
-	
-	public void enviaLista()
+	public void verificaAvaliacoes() throws MalformedURLException, EmailException
 	{
+		List<Avaliacao> avaliacoes = new AvaliacaoBean().getListaAvaliacao();
+
+		for(Avaliacao a : avaliacoes)
+		{
+			if(a.getNota().isEmpty())
+			{
+				 List<Integer> revisores = randomRevisores();
+				 
+				 for(Integer id : revisores)
+					 if(!id.equals(a.getId_avaliacao().getInscricao_fk()))
+					 {
+						 Artigo artigo = new DAO<Artigo>(Artigo.class).buscaPorId(a.getId_avaliacao().getId_artigo_fk());
+						 
+						 a.getId_avaliacao().setInscricao_fk(id);
+						 
+						 new DAO<Avaliacao>(Avaliacao.class).atualiza(a);//Atualizando avaliacao com novo avaliador
+						 
+						 enviaEmail(id, artigo);
+						 break;
+					 }	 
+			}
+		}
+	}
+	
+	public void enviaArtigosAceitos()
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		List<Congresso> congressos = new DAO<Congresso>(Congresso.class).listaTodos();
+		String dataAtual = sdf.format(new Date());//Data atual
+		
+		for(Congresso c : congressos)
+		{
+			if(c.getDataSubmissao().equals(dataAtual))
+			{
+				enviaLista(c);
+			}
+		}
+		
+	}
+	
+	public void enviaLista(Congresso congresso)
+	{
+		List<Participante> participantes = new DAO<Participante>(Participante.class).listaTodos();
+		
+		for(Participante p : participantes)
+		{
+			if(p.getCongresso().equals(congresso.getNome()))
+			{
+				//Enviar artigos selecionados
+			}
+		}
+	}
+	
+	
+	public void getArtigosAceitos()
+	{
+		List<Avaliacao> avaliacoes = new AvaliacaoBean().getListaAvaliacao();
+		List<Artigo> artigos = new ArtigoBean().getListaArtigos();
+		Map<Integer,Float> artigosAceitos = new HashMap<Integer, Float>();
+		MapValueComparator comparator = new MapValueComparator(artigosAceitos);
+		Map<Integer,Float> artigosOrdenados = new TreeMap<Integer, Float>(comparator);
+		
+		for(Artigo a : artigos)
+		{
+			int cont = 0;
+			float nota = 0;
+			float media = 0;
+			
+			for(Avaliacao ava : avaliacoes)
+				if(ava.getId_avaliacao().getId_artigo_fk() == a.getId_artigo())
+				{
+					nota = nota + Float.parseFloat(ava.getNota());
+					cont++;
+				}
+						
+			if(cont >= 3)
+			{
+				media = nota/cont;
+				artigosAceitos.put(a.getId_artigo(),media);
+			}
+
+		}
+
+		artigosOrdenados.putAll(artigosAceitos);
+		
+		System.out.println(artigosOrdenados);
+		
+		artigosAceitos.clear();
 		
 	}
 	
@@ -124,9 +223,59 @@ public class GerenciadorBean {
 		return "menu.xhtml";
 	}
 	
-//	public static void main(String[]arg) throws MalformedURLException, EmailException
-//	{
-//		GerenciadorBean bean = new GerenciadorBean();
-//		bean.enviaArtigo();
-//	}
+	public static void main(String[] args)
+	{
+        final GerenciadorBean g = new GerenciadorBean();
+        
+        g.getArtigosAceitos();
+	}
+//	public static void main(String[] args) {
+//        Timer timer = null;
+//        Timer timerResultado = null;
+//
+//        final GerenciadorBean g = new GerenciadorBean();
+//
+//        System.out.println("Iniciou...");
+//        if (timer == null) {  
+//            timer = new Timer();  
+//            timerResultado = new Timer();
+//            
+//            TimerTask tarefa = new TimerTask() {
+//            	public void teste() throws MalformedURLException, EmailException {
+//                	        
+//            		g.verificaAvaliacoes();
+//
+//            		System.out.println("Verificando...");
+//                }
+//                public void run() {
+//                    try {
+//                        this.teste();
+//                        //timer.cancel();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();  
+//                    }  
+//                }  
+//            };  
+//            
+//            TimerTask tarefaResultado = new TimerTask() {
+//            	public void teste() throws MalformedURLException, EmailException {
+//                	
+//            		g.enviaArtigosAceitos();
+//
+//            		System.out.println("Enviando Artigos Aceitos...");
+//                }
+//                public void run() {
+//                    try {
+//                        this.teste();
+//                        //timer.cancel();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();  
+//                    }  
+//                }  
+//            };  
+//            
+//            timer.scheduleAtFixedRate(tarefa, TEMPO_AVALIACAO, TEMPO_AVALIACAO);
+//            timerResultado.scheduleAtFixedRate(tarefaResultado, TEMPO_RESULTADO, TEMPO_RESULTADO);
+//        }  
+//    }  
 }

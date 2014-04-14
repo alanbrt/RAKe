@@ -4,7 +4,11 @@ import java.net.MalformedURLException;
 //import java.net.URL;
 
 
+import java.util.List;
+
 import javax.annotation.ManagedBean;
+
+
 
 //import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
@@ -12,6 +16,7 @@ import org.apache.commons.mail.MultiPartEmail;
 
 import com.dao.DAO;
 import com.modelo.Avaliacao;
+import com.modelo.Participante;
 
 @ManagedBean
 public class AvaliacaoBean {
@@ -30,9 +35,10 @@ public class AvaliacaoBean {
 	{
 		return "menu.xhtml";
 	}
+	
 	public String confirma() throws MalformedURLException, EmailException
 	{
-		if(avaliacao.getNota() <= 0 || comentario.length() <= 0)
+		if((!avaliacao.getNota().isEmpty()) && (!comentario.isEmpty()))
 		{
 			addAvaliacao();
 			enviaComentario();
@@ -40,29 +46,24 @@ public class AvaliacaoBean {
 			return "index.xhtml";
 		}
 
-		return "avaliacao.xhtml";//Colocar um aviso de avalia‹o realizada
+		return "avaliacao.xhtml";//Colocar um aviso de erro
 		
 	}
 	
 	public void enviaComentario() throws MalformedURLException, EmailException
-	{
-//		EmailAttachment attachment = new EmailAttachment(); 
-//		attachment.setURL(new URL("http://www.apache.org/images/asf_logo_wide.gif"));
-//		attachment.setDisposition(EmailAttachment.ATTACHMENT); 
-//		attachment.setDescription("Apache logo"); 
-//		attachment.setName("Apache logo");   
+	{ 
+		
+		Participante p = new DAO<Participante>(Participante.class).buscaPorId(avaliacao.getId_avaliacao().getInscricao_fk());
 		
 		// Cria a mensagem de e-mail 
 		MultiPartEmail email = new MultiPartEmail(); 
 		email.setHostName("mail.google.com"); 
-		email.addTo("alandossantossoaress@gmail.com", "Kal"); 
-		email.setFrom("rakemanage@gmail.com", "Me"); //Senha rake2014
+		email.addTo(p.getEmail(), p.getNome()); 
+		email.setFrom("rakemanage@gmail.com", "eCongress"); //Senha rake2014
 		email.setAuthentication("rakemanage@gmail.com", "rake2014");
-		email.setSubject("Teste Comentario RAKe"); 
+		email.setSubject(p.getCongresso()+" - Avaliacao de Artigo"); 
 		email.setMsg(comentario);   
-		//email.attach(attachment); 
-		
-		// adiciona o anexo   
+   
 		email.send();// envia o e-mail
 
 	}
@@ -82,6 +83,13 @@ public class AvaliacaoBean {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+	
+	
+	public List<Avaliacao> getListaAvaliacao()
+	{
+		return new DAO<Avaliacao>(Avaliacao.class).listaTodos();
+
 	}
 	
 }
