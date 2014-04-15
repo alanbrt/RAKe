@@ -10,12 +10,24 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
 import com.dao.DAO;
+import com.modelo.Endereco;
 import com.modelo.Participante;
 
 @ManagedBean
 public class ParticipanteBean {
 
 	private Participante participante = new Participante();
+
+	private Endereco endereco = new Endereco();
+
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
 	public Participante getParticipante() 
 	{
@@ -25,28 +37,6 @@ public class ParticipanteBean {
 	public void setParticipante(Participante participante) 
 	{
 		this.participante = participante;
-	}
-	
-	public boolean validaCampos()
-	{
-
-		if((!participante.getNome().isEmpty()) && (!participante.getEmail().isEmpty()) &&
-				!participante.getCartao().getMarca_cartao().isEmpty() && 
-				!participante.getCartao().getNumero_cartao().isEmpty() &&
-				!participante.getCartao().getVencimento_cartao().isEmpty() &&
-				!participante.getCelular().isEmpty() &&
-				!participante.getTelefone_fixo().isEmpty() &&
-				!participante.getCongresso().isEmpty() &&
-				!participante.getEndereco().getBairro().isEmpty() &&
-				!participante.getEndereco().getCep().isEmpty() &&
-				!participante.getEndereco().getComplemento().isEmpty() &&
-				!participante.getEndereco().getNumero().isEmpty() &&
-				!participante.getEndereco().getRua().isEmpty())
-		{
-			return true;
-		}
-
-		return false;
 	}
 	
 	public void enviaEmail() throws EmailException
@@ -79,17 +69,30 @@ public class ParticipanteBean {
 	
 	public String grava() throws EmailException
 	{ 		
-		if(validaCampos())
-		{
-			
-		}
+		if(!((participante.getNome().equals("")) && (participante.getEmail().equals("")) && 
+				(participante.getTelefone_fixo().equals("")) && (participante.getCelular().equals("")) && 
+				(participante.getLocal_de_emprego().equals("")) && (endereco.getRua().equals("")) && 
+				(endereco.getBairro().equals("")) && (endereco.getNumero().equals("")) && 
+				(endereco.getCep().equals("")) && (participante.getNumero_cartao().equals("")) && 
+				(participante.getVencimento_cartao().equals("")) && 
+				(participante.getMarca_cartao().equals("")) && 
+				(participante.getCongresso().equals("")))){
 		
 		System.out.println("Gravando Participante");
+
 		new DAO<Participante>(Participante.class).adiciona(this.participante);
+
+		endereco.setInscricao_fk( new DAO<Participante>(Participante.class).listaTodos().size());
+		
+		new DAO<Endereco>(Endereco.class).adiciona(endereco);
 		
 		enviaEmail();
 		
 		return "index.xhtml";
+
+		}
+		
+		return "#";
 		
 	}
 	

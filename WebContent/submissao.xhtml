@@ -28,25 +28,42 @@
 				<td>
 					<div id="congresso">
 					
-			 			<h:form>
+			 			<h:form id="consultasForm" acceptcharset="ISO-8859-1" lang="pt_BR">
 			 			
 						<fieldset>
 							<legend><h4>Dados dos Integrantes</h4></legend>
-							Autor
-							<ui:repeat value="#{artigoBean.inscricoes}" var="t">
-							   <ui:repeat value="#{t}" var="s">
-							 		<h:outputText value="#{s}"></h:outputText><br/>
-							   </ui:repeat>
-							</ui:repeat>
-							<h:inputText value="#{artigoBean.inscricao}" id="nome"></h:inputText>
-							<h:commandButton value="Adicionar Autor" actionListener="#{artigoBean.addAutor}" ajax="false"/>
-						
+							Inscrição
+							<h:inputText required="true" requiredMessage=" Este campo é obrigatório!" 
+							maxlength="8" size="10" value="#{artigoBean.inscricao}"  id="inscricao"></h:inputText>
+							
+							<h:message for="inscricao" style="color: red" />
+													
 						</fieldset>
-					
+						
+						<fieldset>
+								<legend>
+									<h4>Congresso</h4>
+								</legend>
+								<h:outputText value="Selecione o congresso: " />
+								<h:selectOneMenu
+									value="#{artigoBean.congresso}"
+									id="congresso" required="true"
+									requiredMessage=" Este campo é obrigatório!">
+									<f:selectItem itemValue="#{null}" itemLabel="Selecione"></f:selectItem>
+									<f:selectItems value="#{congressoBean.congressos}"
+										var="congresso" itemLabel="#{congresso.nome}"
+										itemValue="#{congresso.nome}" />
+								</h:selectOneMenu>
+								<h:message for="congresso" style="color: red" />
+						</fieldset>
+							
 						<fieldset>
 							<legend><h4>Artigo</h4></legend>
 							Título
-							<h:inputText value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputText><br/><br/>
+							<h:inputText  required="true" requiredMessage=" Este campo é obrigatório!" maxlength="50"
+									size="70" value="#{artigoBean.artigo.titulo}" id="titulo"></h:inputText>
+							<h:message for="titulo" style="color: red" />
+							<br/>
 							Resumo
 							<p:editor id="editor" value="#{artigoBean.artigo.resumo}" width="1000"/> 
 						</fieldset>
@@ -54,15 +71,16 @@
 						<fieldset> 
 						 	<legend><h4>Carregar arquivo</h4></legend>
 		  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" showButtons="false" label="Upload" auto="true"
-		  				  	update="messages" sizeLimit="100000" fileLimit="1" allowTypes="/(\.|\/)(pdf|pdf?g|pdf)$/"/>
-		  				  	
+		  				  	multiple="false" update="messages" sizeLimit="52428800" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/"/>
+		  				  	 
+              
 		  				  	<p:growl id="messages" showDetail="true"/> 
 		  				  	
 		  				  	<br/>
 		  				  	
 		  				  	<center>
 		  						<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" ajax="false"></h:commandButton>
-								<h:commandButton value="Cancelar" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
+								<h:commandButton value="Cancelar" immediate="true" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
 							</center>
 						</fieldset>
 						

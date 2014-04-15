@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 
 import javax.annotation.ManagedBean;
@@ -29,7 +31,7 @@ public class GerenciadorBean {
 
     public static final long TEMPO_RESULTADO = (1000 * 86400); // 24 HORAS
     public static final long TEMPO_AVALIACAO = (1000 * 432000); // 5 DIAS
-    public static final int MAX_ACEITOS = 3;
+    public static final int MAX_ACEITOS = 20;
     
 	public void geraCertificado()
 	{
@@ -41,7 +43,7 @@ public class GerenciadorBean {
 		
 	}
 	
-	public void enviaEmail(int id, Artigo a) throws EmailException, MalformedURLException
+	public void enviaEmailRevisor(int id, Artigo a) throws EmailException, MalformedURLException
 	{
 		Participante p = new DAO<Participante>(Participante.class).buscaPorId(id);
 		String nome = p.getNome().replace(" ", "%20");
@@ -88,7 +90,7 @@ public class GerenciadorBean {
 
 			for(Integer id : revisores)
 			{
-				enviaEmail(id,a);
+				enviaEmailRevisor(id,a);
 			}
 		}
 	}
@@ -145,14 +147,14 @@ public class GerenciadorBean {
 						 
 						 new DAO<Avaliacao>(Avaliacao.class).atualiza(a);//Atualizando avaliacao com novo avaliador
 						 
-						 enviaEmail(id, artigo);
+						 enviaEmailRevisor(id, artigo);
 						 break;
 					 }	 
 			}
 		}
 	}
 	
-	public void enviaArtigosAceitos()
+	public void enviaArtigosAceitos() throws EmailException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		List<Congresso> congressos = new DAO<Congresso>(Congresso.class).listaTodos();
@@ -168,21 +170,35 @@ public class GerenciadorBean {
 		
 	}
 	
-	public void enviaLista(Congresso congresso)
+	public void enviaLista(Congresso congresso) throws EmailException
 	{
 		List<Participante> participantes = new DAO<Participante>(Participante.class).listaTodos();
+		String lista = getArtigosAceitos(congresso);
 		
 		for(Participante p : participantes)
 		{
 			if(p.getCongresso().equals(congresso.getNome()))
 			{
-				//Enviar artigos selecionados
+				
+				MultiPartEmail email = new MultiPartEmail(); 
+				
+				email.setHostName("smtp.googlemail.com"); 
+				email.setSmtpPort(465);
+				email.setSSLOnConnect(true);
+				email.addTo(p.getEmail(), p.getNome()); 
+				email.setFrom("rakemanage@gmail.com", "eCongress"); //Senha rake2014
+				email.setAuthentication("rakemanage@gmail.com", "rake2014");
+				email.setSubject("eCongress - Lista de Artigos Aprovados"); 
+				email.setMsg("LISTA DE ARTIGOS APROVADOS NO CONGRESSO - "+ congresso.getNome()+"\n"+lista);   
+		   
+				// envia o e-mail
+				email.send();
 			}
 		}
 	}
 	
 	
-	public String getArtigosAceitos()
+	public String getArtigosAceitos(Congresso c)
 	{
 		List<Avaliacao> avaliacoes = new AvaliacaoBean().getListaAvaliacao();
 		List<Artigo> artigos = new ArtigoBean().getListaArtigos();
@@ -198,17 +214,20 @@ public class GerenciadorBean {
 			float nota = 0;
 			float media = 0;
 			
-			for(Avaliacao ava : avaliacoes)
-				if(ava.getId_avaliacao().getId_artigo_fk() == a.getId_artigo())
-				{
-					nota = nota + Float.parseFloat(ava.getNota());
-					cont++;
-				}
-						
-			if(cont >= 3)
+			if(a.getId_congresso() == c.getId())
 			{
-				media = nota/cont;
-				artigosAceitos.put(a.getId_artigo(),media);
+				for(Avaliacao ava : avaliacoes)
+					if(ava.getId_avaliacao().getId_artigo_fk() == a.getId_artigo())
+					{
+						nota = nota + Float.parseFloat(ava.getNota());
+						cont++;
+					}
+							
+				if(cont >= 3)
+				{
+					media = nota/cont;
+					artigosAceitos.put(a.getId_artigo(),media);
+				}
 			}
 
 		}
@@ -236,59 +255,53 @@ public class GerenciadorBean {
 		return "menu.xhtml";
 	}
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
+        Timer timer = null;
+        Timer timerResultado = null;
+
         final GerenciadorBean g = new GerenciadorBean();
-        
-        g.getArtigosAceitos();
-	}
-//	public static void main(String[] args) {
-//        Timer timer = null;
-//        Timer timerResultado = null;
-//
-//        final GerenciadorBean g = new GerenciadorBean();
-//
-//        System.out.println("Iniciou...");
-//        if (timer == null) {  
-//            timer = new Timer();  
-//            timerResultado = new Timer();
-//            
-//            TimerTask tarefa = new TimerTask() {
-//            	public void teste() throws MalformedURLException, EmailException {
-//                	        
-//            		g.verificaAvaliacoes();
-//
-//            		System.out.println("Verificando...");
-//                }
-//                public void run() {
-//                    try {
-//                        this.teste();
-//                        //timer.cancel();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();  
-//                    }  
-//                }  
-//            };  
-//            
-//            TimerTask tarefaResultado = new TimerTask() {
-//            	public void teste() throws MalformedURLException, EmailException {
-//                	
-//            		g.enviaArtigosAceitos();
-//
-//            		System.out.println("Enviando Artigos Aceitos...");
-//                }
-//                public void run() {
-//                    try {
-//                        this.teste();
-//                        //timer.cancel();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();  
-//                    }  
-//                }  
-//            };  
-//            
-//            timer.scheduleAtFixedRate(tarefa, TEMPO_AVALIACAO, TEMPO_AVALIACAO);
-//            timerResultado.scheduleAtFixedRate(tarefaResultado, TEMPO_RESULTADO, TEMPO_RESULTADO);
-//        }  
-//    }  
+
+        System.out.println("Iniciou...");
+        if (timer == null) {  
+            timer = new Timer();  
+            timerResultado = new Timer();
+            
+            TimerTask tarefa = new TimerTask() {
+            	public void teste() throws MalformedURLException, EmailException {
+                	        
+            		g.verificaAvaliacoes();
+
+            		System.out.println("Verificando...");
+                }
+                public void run() {
+                    try {
+                        this.teste();
+                        //timer.cancel();
+                    } catch (Exception e) {
+                        e.printStackTrace();  
+                    }  
+                }  
+            };  
+            
+            TimerTask tarefaResultado = new TimerTask() {
+            	public void teste() throws MalformedURLException, EmailException {
+                	
+            		g.enviaArtigosAceitos();
+
+            		System.out.println("Enviando Artigos Aceitos...");
+                }
+                public void run() {
+                    try {
+                        this.teste();
+                        //timer.cancel();
+                    } catch (Exception e) {
+                        e.printStackTrace();  
+                    }  
+                }  
+            };  
+            
+            timer.scheduleAtFixedRate(tarefa, TEMPO_AVALIACAO, TEMPO_AVALIACAO);
+            timerResultado.scheduleAtFixedRate(tarefaResultado, TEMPO_RESULTADO, TEMPO_RESULTADO);
+        }  
+    }  
 }

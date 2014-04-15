@@ -25,4 +25,7 @@
       <servlet-name>Faces Servlet</servlet-name> 
     </filter-mapping>
 
+    <listener>  
+    	<listener-class>com.utils.MyServletContextListener</listener-class>  
+	</listener> 
 </web-app>

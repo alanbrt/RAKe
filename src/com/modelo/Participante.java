@@ -1,6 +1,5 @@
 package com.modelo;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,24 +24,31 @@ public class Participante{
 	private boolean revisor = false;
 	
 	private String congresso;
-	
-	@Embedded
-	private Cartao cartao = new Cartao();
-	
-	@Embedded
-	private Endereco endereco = new Endereco();
 
-	public Cartao getCartao() {
-		return cartao;
+	private String numero_cartao;
+	
+	private String vencimento_cartao;
+	
+	private String marca_cartao;
+	
+
+	public String getNumero_cartao() {
+		return numero_cartao;
 	}
-	public void setCartao(Cartao cartao) {
-		this.cartao = cartao;
+	public void setNumero_cartao(String numero_cartao) {
+		this.numero_cartao = numero_cartao;
 	}
-	public Endereco getEndereco() {
-		return endereco;
+	public String getVencimento_cartao() {
+		return vencimento_cartao;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setVencimento_cartao(String vencimento_cartao) {
+		this.vencimento_cartao = vencimento_cartao;
+	}
+	public String getMarca_cartao() {
+		return marca_cartao;
+	}
+	public void setMarca_cartao(String marca_cartao) {
+		this.marca_cartao = marca_cartao;
 	}
 	public boolean isRevisor() {
 		return revisor;

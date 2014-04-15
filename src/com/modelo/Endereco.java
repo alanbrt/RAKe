@@ -1,17 +1,21 @@
 package com.modelo;
 
-import java.io.Serializable;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
-@Embeddable
-public class Endereco implements Serializable{
+@Entity
+public class Endereco{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+	@Id
+	@GeneratedValue
+	private int id_endereco;
+	
+	@JoinColumn(name="inscricao")
+	private int inscricao_fk;
+	
 	private String rua;
 	
 	private String bairro;
@@ -23,6 +27,22 @@ public class Endereco implements Serializable{
 	private String complemento;
 	
 	
+	public int getInscricao_fk() {
+		return inscricao_fk;
+	}
+
+	public void setInscricao_fk(int inscricao_fk) {
+		this.inscricao_fk = inscricao_fk;
+	}
+
+	public int getId_endereco() {
+		return id_endereco;
+	}
+
+	public void setId_endereco(int id_endereco) {
+		this.id_endereco = id_endereco;
+	}
+
 	public String getRua() {
 		return rua;
 	}
