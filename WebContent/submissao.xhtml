@@ -32,12 +32,18 @@
 			 			
 						<fieldset>
 							<legend><h4>Dados dos Integrantes</h4></legend>
-							Inscrição
-							<h:inputText required="true" requiredMessage=" Este campo é obrigatório!" 
-							maxlength="8" size="10" value="#{artigoBean.inscricao}"  id="inscricao"></h:inputText>
+							Número de Inscrição
+							<br/>
+							1 :<h:inputText required="true" requiredMessage=" Este campo é obrigatório!" 
+							maxlength="8" size="10" value="#{artigoBean.inscricao1}"  id="inscricao1"></h:inputText>
 							
-							<h:message for="inscricao" style="color: red" />
-													
+							<h:message for="inscricao1" style="color: red" />						
+							 
+							<br/>
+							2 :<h:inputText maxlength="8" size="10" value="#{artigoBean.inscricao2}"  id="inscricao2"></h:inputText>
+							<br/>
+							3 :<h:inputText maxlength="8" size="10" value="#{artigoBean.inscricao3}"  id="inscricao3"></h:inputText>
+							
 						</fieldset>
 						
 						<fieldset>

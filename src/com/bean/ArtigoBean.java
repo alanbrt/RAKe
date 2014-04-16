@@ -7,6 +7,7 @@ package com.bean;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
@@ -33,8 +34,12 @@ public class ArtigoBean implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Artigo artigo = new Artigo();
-		
-	private int inscricao;
+			
+	private int inscricao1;
+	
+	private int inscricao2;
+	
+	private int inscricao3;
 	
 	private String congresso;
 	
@@ -53,14 +58,24 @@ public class ArtigoBean implements java.io.Serializable{
 		this.congresso = congresso;
 	}
 
-	public int getInscricao() {
-		return inscricao;
+	public int getInscricao1() {
+		return inscricao1;
 	}
-
-	public void setInscricao(int inscricao) {
-		this.inscricao = inscricao;
+	public void setInscricao1(int inscricao1) {
+		this.inscricao1 = inscricao1;
 	}
-
+	public int getInscricao2() {
+		return inscricao2;
+	}
+	public void setInscricao2(int inscricao2) {
+		this.inscricao2 = inscricao2;
+	}
+	public int getInscricao3() {
+		return inscricao3;
+	}
+	public void setInscricao3(int inscricao3) {
+		this.inscricao3 = inscricao3;
+	}
 	public void setArtigo(Artigo artigo) {
 		this.artigo = artigo;
 	}
@@ -71,20 +86,27 @@ public class ArtigoBean implements java.io.Serializable{
 		
 	}
 	
-	public boolean validaAutores()
+	public List<Integer> validaAutores()
 	{
-
-		Participante p = new DAO<Participante>(Participante.class).buscaPorId(inscricao);
-			
-		if(p == null) return false;
+		List<Integer> inscricoes = new ArrayList<Integer>();
 		
-		return true;
+		Participante p1 = new DAO<Participante>(Participante.class).buscaPorId(inscricao1);
+		Participante p2 = new DAO<Participante>(Participante.class).buscaPorId(inscricao2);
+		Participante p3 = new DAO<Participante>(Participante.class).buscaPorId(inscricao3);
+
+		if(p1 != null) inscricoes.add(inscricao1);
+		if(p2 != null) inscricoes.add(inscricao2);
+		if(p3 != null) inscricoes.add(inscricao3);
+		
+		return inscricoes;
 		
 	}
 	
 	public String confirmar()
 	{
-		if(validaAutores())
+		List<Integer> inscricoes = validaAutores();
+		
+		if(!inscricoes.isEmpty())
 		{
 			
 			System.out.println("Autores validados!");
@@ -101,10 +123,13 @@ public class ArtigoBean implements java.io.Serializable{
 
 			Submissao submissao = new Submissao();
 				
-			submissao.getId_submissao().setInscricao_fk(inscricao);
-			submissao.getId_submissao().setId_artigo_fk(id);
+			for(Integer object : inscricoes)
+			{
+				submissao.getId_submissao().setInscricao_fk(object);
+				submissao.getId_submissao().setId_artigo_fk(id);
 				
-			new DAO<Submissao>(Submissao.class).adiciona(submissao);
+				new DAO<Submissao>(Submissao.class).adiciona(submissao);
+			}
 
 			
 			return "index.xhtml";
@@ -195,4 +220,5 @@ public class ArtigoBean implements java.io.Serializable{
 			}
 		}
 	}
+
 }
