@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
 	<title>eCongress</title>
-	<link rel="shortcut icon" type="image/x-icon" href="img/econgress.ico" />
+<!-- 	<link rel="stylesheet" type="text/css" href="css/teste.css"/> -->
+	<link rel="shortcut icon" type="image/x-icon" href="img/econgress.ico"/>
 </h:head>
 
 <h:body>
@@ -22,32 +24,19 @@
 			</tr>
 			<tr>
 				<td>
-					<div id="conteudo">
+					<div id="congresso">
 						<fieldset>
-							<legend>
-								<h4>Congressos</h4>
-							</legend>
-							<br></br>
-							<br></br>
-							<center>
-								<h:outputText value="Selecione o congresso:" />
+						<legend><h4>Menu</h4></legend>
+							<br></br><br></br><center>
+								<h:outputText value="Selecione a opção desejada:"/>
 								<br></br>
 								<h:form>
-									<h:selectOneMenu value="#{congressoBean.congresso.id}"
-										id="congresso" required="true"
-										requiredMessage=" Este campo é obrigatório!">
-										<f:selectItem itemValue="#{null}" itemLabel="Selecione"></f:selectItem>
-										<f:selectItems value="#{congressoBean.congressos}"
-											var="congresso" itemLabel="#{congresso.nome}"
-											itemValue="#{congresso.id}" />
-									</h:selectOneMenu>
-									<h:message for="congresso" style="color: red" />
-									<br />
-									<h:commandButton value="    Submit    " action="menu.xhtml"></h:commandButton>
+								<h:commandButton value="   Efetuar inscrição   " action="inscricao.xhtml"/>
+								<h:commandButton value="    Submeter Artigo    " action="submissao.xhtml"/>								
+								<!-- <h:commandButton value="    Avaliar Artigo    " action="avaliacao.xhtml"/> -->
 								</h:form>
-								<br></br>
-								<br></br>
-							</center>
+							<br></br><br></br></center>
+							<br/>
 						</fieldset>
 					</div>
 				</td>

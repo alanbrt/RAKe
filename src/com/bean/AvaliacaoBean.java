@@ -33,7 +33,7 @@ public class AvaliacaoBean {
 	
 	public String cancelar()
 	{
-		return "menu.xhtml";
+		return "index.xhtml";
 	}
 	
 	public String confirma() throws MalformedURLException, EmailException

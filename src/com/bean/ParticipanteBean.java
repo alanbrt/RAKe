@@ -64,7 +64,7 @@ public class ParticipanteBean {
 	
 	public String cancelar()
 	{
-		return "menu.xhtml";
+		return "index.xhtml";
 	}
 	
 	public String grava() throws EmailException
@@ -93,9 +93,8 @@ public class ParticipanteBean {
 		return "index.xhtml";
 
 		}
-		
-		return "#";
-		
+			
+		return "index.xhtml";
 	}
 	
 	public List<Participante> getParticipantes() {

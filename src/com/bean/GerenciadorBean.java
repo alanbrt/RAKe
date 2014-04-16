@@ -252,7 +252,7 @@ public class GerenciadorBean {
 	
 	public String getMenu()
 	{
-		return "menu.xhtml";
+		return "index.xhtml";
 	}
 	
 	public static void main(String[] args) {
