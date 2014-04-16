@@ -69,6 +69,7 @@ public class ParticipanteBean {
 	
 	public String grava() throws EmailException
 	{ 		
+		
 		if(!((participante.getNome().equals("")) && (participante.getEmail().equals("")) && 
 				(participante.getTelefone_fixo().equals("")) && (participante.getCelular().equals("")) && 
 				(participante.getLocal_de_emprego().equals("")) && (endereco.getRua().equals("")) && 
@@ -88,8 +89,10 @@ public class ParticipanteBean {
 		
 		new DAO<Participante>(Participante.class).adiciona(this.participante);		
 		
-		enviaEmail();
+		//int idInscricao = new DAO<Participante>(Participante.class).contaTodos("Participante");
 		
+		enviaEmail();  
+
 		return "index.xhtml";
 
 		}

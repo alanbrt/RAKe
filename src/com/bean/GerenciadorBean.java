@@ -1,7 +1,6 @@
 package com.bean;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,7 +53,7 @@ public class GerenciadorBean {
 		
 		// Cria a mensagem de e-mail 
 		EmailAttachment attachment = new EmailAttachment(); 
-		attachment.setURL(new URL("http://www.apache.org/images/asf_logo_wide.gif"));
+		attachment.setPath(a.getUrl());
 		attachment.setDisposition(EmailAttachment.ATTACHMENT); 
 		attachment.setDescription("Artigo"); 
 		attachment.setName(a.getTitulo());   
@@ -78,6 +77,9 @@ public class GerenciadorBean {
    
 		// envia o e-mail
 		email.send();
+		
+		
+		System.out.println("Email enviado com sucesso!");
 	}
 	
 	public void enviaArtigo() throws EmailException, MalformedURLException
@@ -254,6 +256,7 @@ public class GerenciadorBean {
 	{
 		return "index.xhtml";
 	}
+	
 	
 	public static void main(String[] args) {
         Timer timer = null;
