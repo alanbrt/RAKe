@@ -70,17 +70,15 @@
 						
 						<fieldset> 
 						 	<legend><h4>Carregar arquivo</h4></legend>
-		  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" showButtons="false" label="Upload" auto="true"
-		  				  	multiple="false" update="messages" sizeLimit="52428800" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/"/>
+		  				 	<p:fileUpload fileUploadListener="#{artigoBean.doUpload}" update="messages" allowTypes="/(\.|\/)(pdf)$/"/>
 		  				  	 
-              
-		  				  	<p:growl id="messages" showDetail="true"/> 
-		  				  	
+ 		  				  	<p:growl id="messages" showDetail="true"/> 
+ 		  				  	
 		  				  	<br/>
 		  				  	
 		  				  	<center>
-		  						<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" ajax="false"></h:commandButton>
-								<h:commandButton value="Cancelar" immediate="true" action="#{artigoBean.cancelar}" ajax="false"></h:commandButton>
+		  						<h:commandButton value="Confirmar" action="#{artigoBean.confirmar}" update="messages"></h:commandButton>
+								<h:commandButton value="Cancelar" immediate="true" action="#{artigoBean.cancelar}"></h:commandButton>
 							</center>
 						</fieldset>
 						

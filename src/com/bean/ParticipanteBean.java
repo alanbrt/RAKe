@@ -80,11 +80,13 @@ public class ParticipanteBean {
 		
 		System.out.println("Gravando Participante");
 
-		new DAO<Participante>(Participante.class).adiciona(this.participante);
-
-		endereco.setInscricao_fk( new DAO<Participante>(Participante.class).listaTodos().size());
-		
 		new DAO<Endereco>(Endereco.class).adiciona(endereco);
+		
+		int idEndereco = new DAO<Endereco>(Endereco.class).contaTodos("Endereco");
+		
+		participante.setId_endereco_fk(idEndereco);
+		
+		new DAO<Participante>(Participante.class).adiciona(this.participante);		
 		
 		enviaEmail();
 		

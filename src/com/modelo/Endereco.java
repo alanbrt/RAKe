@@ -4,7 +4,6 @@ package com.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 
 @Entity
 public class Endereco{
@@ -12,9 +11,6 @@ public class Endereco{
 	@Id
 	@GeneratedValue
 	private int id_endereco;
-	
-	@JoinColumn(name="inscricao")
-	private int inscricao_fk;
 	
 	private String rua;
 	
@@ -25,15 +21,6 @@ public class Endereco{
 	private String numero;
 	
 	private String complemento;
-	
-	
-	public int getInscricao_fk() {
-		return inscricao_fk;
-	}
-
-	public void setInscricao_fk(int inscricao_fk) {
-		this.inscricao_fk = inscricao_fk;
-	}
 
 	public int getId_endereco() {
 		return id_endereco;

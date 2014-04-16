@@ -7,14 +7,11 @@ package com.bean;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.FileUploadEvent;
@@ -27,27 +24,33 @@ import com.modelo.Participante;
 import com.modelo.Submissao;
 
 @ManagedBean
-@ApplicationScoped
-public class ArtigoBean {
+@ViewScoped
+public class ArtigoBean implements java.io.Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Artigo artigo = new Artigo();
-	
-	private List<Integer> inscricoes;
-	
+		
 	private int inscricao;
 	
 	private String congresso;
 	
+	private UploadedFile arquivo;
+	
+	public UploadedFile getArquivo() {
+		return arquivo;
+	}
+	public void setArquivo(UploadedFile arquivo) {
+		this.arquivo = arquivo;
+	}
 	public String getCongresso() {
 		return congresso;
 	}
 	public void setCongresso(String congresso) {
 		this.congresso = congresso;
-	}
-	public ArtigoBean()
-	{
-		inscricoes = new ArrayList<Integer>();
-		
 	}
 
 	public int getInscricao() {
@@ -56,14 +59,6 @@ public class ArtigoBean {
 
 	public void setInscricao(int inscricao) {
 		this.inscricao = inscricao;
-	}
-
-	public List<Integer> getInscricoes() {
-		return inscricoes;
-	}
-
-	public void setInscricoes(List<Integer> inscricoes) {
-		this.inscricoes = inscricoes;
 	}
 
 	public void setArtigo(Artigo artigo) {
@@ -87,34 +82,33 @@ public class ArtigoBean {
 		
 	}
 	
-	
 	public String confirmar()
 	{
 		if(validaAutores())
 		{
 			
 			System.out.println("Autores validados!");
-			System.out.println("Art "+artigo.getResumo() +" Art "+ artigo.getTitulo()+" url "+ artigo.getUrl());
-			if((!artigo.getResumo().isEmpty()) && (!artigo.getTitulo().isEmpty()) && (!artigo.getUrl().isEmpty()))
-			{
-				System.out.println("Salvando no banco!");
 
-				buscaCongresso();
-				
-				new DAO<Artigo>(Artigo.class).adiciona(this.artigo);
-				
-				int id = new DAO<Artigo>(Artigo.class).contaTodos("artigo");
+			salvaArquivo();
+			
+			System.out.println("Salvando no banco!");
 
-				Submissao submissao = new Submissao();
-					
-				submissao.getId_submissao().setInscricao_fk(inscricao);
-				submissao.getId_submissao().setId_artigo_fk(id);
-					
-				new DAO<Submissao>(Submissao.class).adiciona(submissao);
+			buscaCongresso();
+			
+			new DAO<Artigo>(Artigo.class).adiciona(this.artigo);
+			
+			int id = new DAO<Artigo>(Artigo.class).contaTodos("Artigo");
 
+			Submissao submissao = new Submissao();
 				
-				return "index.xhtml";
-			}
+			submissao.getId_submissao().setInscricao_fk(inscricao);
+			submissao.getId_submissao().setId_artigo_fk(id);
+				
+			new DAO<Submissao>(Submissao.class).adiciona(submissao);
+
+			
+			return "index.xhtml";
+				
 		}
 		
 		
@@ -129,45 +123,57 @@ public class ArtigoBean {
 	
 	public void doUpload(FileUploadEvent fileUploadEvent)
 	{ 
-		
-		UploadedFile uf = fileUploadEvent.getFile(); 
-        String nomeArquivo = uf.getFileName();  
-        String url = "//Users//alan_curtindoafesta//Desktop//" + nomeArquivo;
-        File f = new File(url);
-        OutputStream os = null;  
-        InputStream is = null;  
-        try {  
-            is = uf.getInputstream();  
-            byte[] b = new byte[is.available()];  
-            os = new FileOutputStream(f);  
-            while (is.read(b) > 0) {  
-                os.write(b);  
-            }  
-              
-            FacesMessage msg = new FacesMessage("Upload realizado com Sucesso!", fileUploadEvent.getFile().getFileName());  
-            FacesContext.getCurrentInstance().addMessage(null, msg);  
-        } catch (IOException ex) {  
-           // Logger.getLogger(MbUpload.class.getName()).log(Level.SEVERE, null, ex); 
-        	System.out.println("Erro: SERVER NULL");
-        } finally {  
-            try {  
-                os.flush();  
-                os.close();  
-                is.close();  
-            } catch (IOException ex) {  
-               // Logger.getLogger(MbUpload.class.getName()).log(Level.SEVERE, null, ex);  
-            	System.out.println("Erro: SERVER NULL");
-            }  
-        }  
+        this.arquivo = fileUploadEvent.getFile();  
         
-        artigo.setUrl(url);
-	}
+        FacesContext ctx = FacesContext.getCurrentInstance();  
+        FacesMessage msg = new FacesMessage();  
+  
+        msg.setSummary("Arquivo anexado com sucesso.");  
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);  
+  
+        ctx.addMessage("mensagens", msg);  
+        
+    }
 	
-	public void addAutor()
+	public void salvaArquivo()
 	{
-		inscricoes.add(inscricao);
-		
-		System.out.println(inscricoes);
+		FacesContext ctx = FacesContext.getCurrentInstance(); 
+        System.out.println("1");
+
+        FacesMessage msg = new FacesMessage();  
+        System.out.println("2");
+
+        String nomeArquivo = arquivo.getFileName(); //Nome do arquivo enviado 
+        
+        System.out.println("Salvando arquivo anexado - "+ nomeArquivo);
+        
+        String url="//Users//alan_curtindoafesta//Desktop//"+nomeArquivo;
+
+        artigo.setUrl(url);//Salvando a url do arquivo
+        
+        byte[] conteudo = arquivo.getContents(); //Conteudo a ser gravado no arquivo  
+  
+        File file = new File("//Users//alan_curtindoafesta//Desktop//" + nomeArquivo); //Cria uma referencia para arquivo no caminho passado  
+  
+        try {  
+  
+            //Escreve o arquivo e salva  
+            FileOutputStream fos = new FileOutputStream(file);  
+            fos.write(conteudo);  
+            fos.flush();  
+            fos.close();  
+  
+            msg.setSummary("Arquivo salvo com sucesso!");  
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);  
+  
+        } catch (IOException ex) {  
+  
+            msg.setSummary(ex.getMessage());  
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);  
+  
+        } finally {  
+            ctx.addMessage("mensagens", msg);    
+        }  
 	}
  
 	public List<Artigo> getListaArtigos()

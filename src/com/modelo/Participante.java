@@ -3,6 +3,7 @@ package com.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Participante{
@@ -10,6 +11,9 @@ public class Participante{
 	@Id
 	@GeneratedValue
 	private int inscricao;
+	
+	@JoinColumn(name="id_endereco")
+	private int id_endereco_fk;
 	
 	private String nome;
 	
@@ -99,7 +103,12 @@ public class Participante{
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-
+	public int getId_endereco_fk() {
+		return id_endereco_fk;
+	}
+	public void setId_endereco_fk(int id_endereco_fk) {
+		this.id_endereco_fk = id_endereco_fk;
+	}
 	
 	
 }

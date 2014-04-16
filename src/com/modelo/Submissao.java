@@ -1,12 +1,12 @@
 package com.modelo;
 
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class Submissao{
 
-	@EmbeddedId
+	@Id
 	private ChaveComposta id_submissao = new ChaveComposta();
 
 

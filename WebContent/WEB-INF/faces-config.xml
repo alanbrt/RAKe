@@ -20,7 +20,7 @@
 <managed-bean>
 	<managed-bean-name>artigoBean</managed-bean-name>
 	<managed-bean-class>com.bean.ArtigoBean</managed-bean-class>
-	<managed-bean-scope>request</managed-bean-scope>
+	<managed-bean-scope>view</managed-bean-scope>
 </managed-bean>
 
 <managed-bean>
