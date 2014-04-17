@@ -2,8 +2,8 @@ package com.modelo;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.internal.NotNull;
 
 @Entity
 public class Avaliacao{

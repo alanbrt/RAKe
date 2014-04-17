@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Participante{
@@ -15,24 +16,34 @@ public class Participante{
 	@JoinColumn(name="id_endereco")
 	private int id_endereco_fk;
 	
+	@NotNull
 	private String nome;
 	
+	@NotNull
 	private String telefone_fixo;
 	
+	@NotNull
 	private String celular;
 	
+	@NotNull
 	private String email;
 	
+	@NotNull
 	private String local_de_emprego;
 	
+	@NotNull
 	private boolean revisor = false;
 	
+	@NotNull
 	private String congresso;
 
+	@NotNull
 	private String numero_cartao;
 	
+	@NotNull
 	private String vencimento_cartao;
 	
+	@NotNull
 	private String marca_cartao;
 	
 

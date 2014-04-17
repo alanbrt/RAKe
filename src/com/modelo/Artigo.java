@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Artigo {
@@ -12,17 +13,16 @@ public class Artigo {
 	@GeneratedValue
 	private int id_artigo;
 	
+	@NotNull
 	private String resumo;
 	
+	@NotNull
 	private String titulo;
 	
 	@JoinColumn(name="id")
 	private int id_congresso;
 
-	public int getId_congresso() {
-		return id_congresso;
-	}
-
+	@NotNull
 	private String url;
 	
 	
@@ -34,6 +34,10 @@ public class Artigo {
 		this.url = url;
 	}
 
+	public int getId_congresso() {
+		return id_congresso;
+	}
+	
 	public void setId_congresso(int id_congresso) {
 		this.id_congresso = id_congresso;
 	}
