@@ -116,22 +116,22 @@ public class ArtigoBean implements java.io.Serializable{
 			System.out.println("Salvando no banco!");
 
 			buscaCongresso();
-			
+			System.out.println("newDao 1!");
 			new DAO<Artigo>(Artigo.class).adiciona(this.artigo);
-			
-			int id = new DAO<Artigo>(Artigo.class).contaTodos("Artigo");
+			System.out.println("newDao 2!");
 
+			int id = new DAO<Artigo>(Artigo.class).retornaMax("Artigo");
+			System.out.println("ID: "+ id);
 			Submissao submissao = new Submissao();
 				
 			for(Integer object : inscricoes)
 			{
-				submissao.getId_submissao().setInscricao_fk(object);
-				submissao.getId_submissao().setId_artigo_fk(id);
+				submissao.setInscricao_fk(object);
+				submissao.setId_artigo_fk(id);
 				
 				new DAO<Submissao>(Submissao.class).adiciona(submissao);
 			}
 
-			
 			return "index.xhtml";
 				
 		}
@@ -172,13 +172,13 @@ public class ArtigoBean implements java.io.Serializable{
         
         System.out.println("Salvando arquivo anexado - "+ nomeArquivo);
         
-        String url="//Users//alan_curtindoafesta//Desktop//"+nomeArquivo;
+        String url="C:\\Users\\z\\Desktop\\"+nomeArquivo;
 
         artigo.setUrl(url);//Salvando a url do arquivo
         
         byte[] conteudo = arquivo.getContents(); //Conteudo a ser gravado no arquivo  
   
-        File file = new File("//Users//alan_curtindoafesta//Desktop//" + nomeArquivo); //Cria uma referencia para arquivo no caminho passado  
+        File file = new File("C:\\Users\\z\\Desktop\\" + nomeArquivo); //Cria uma referencia para arquivo no caminho passado  
   
         try {  
   
@@ -217,8 +217,10 @@ public class ArtigoBean implements java.io.Serializable{
 			if(c.getNome().equals(congresso))
 			{
 				artigo.setId_congresso(c.getId());
+				System.out.println("Saindo de buscaCongresso 1!");
 			}
 		}
+		System.out.println("Saindo de buscaCongresso 2!");
 	}
 
 }

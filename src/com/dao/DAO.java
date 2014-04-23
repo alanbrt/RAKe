@@ -90,5 +90,14 @@ public class DAO<T> {
 		return lista;
 	}
 	
+	public int retornaMax(String tabela) {
+		EntityManager em = new JPAUtil().getEntityManager();
+		int result = (Integer) em.createQuery("select MAX(id_artigo) from "+tabela)
+				.getSingleResult();
+		em.close();
+
+		return result;
+	}
+	
 	
 }
